@@ -73,6 +73,8 @@ class AppLayout extends Component {
             showSection={ui.authModal.showSection}
             signinModel={ui.authModal.signinModel}
             signupModel={ui.authModal.signupModel}
+            signinErrors={ui.authModal.signinErrors}
+            signupErrors={ui.authModal.signupErrors}
           />
         </StickyContainer>
       </MatchMediaProvider>

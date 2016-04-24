@@ -7,7 +7,8 @@ import cx from 'classnames';
 import Modal from 'react-modal';
 
 // styles
-const btnGrp = cx(['btn', 'left', 'x-group-item']);
+const buttonGroup = cx(['btn', 'left', 'x-group-item']);
+const authSection = cx(['center', 'fit', 'col-8', 'px2', 'mx-auto']);
 
 const styles = {
   overlay: {
@@ -44,13 +45,20 @@ const handleOnChangePassword = (e) =>
     password: e.target.value,
   });
 
-const handleOnSubmitFormLogin = () => {
-  const result = dispatch('auth.login');
-  console.log('result', result);
+const handleOnSubmitFormLogin = (e) => {
+  e.preventDefault();
+  const { email, password } = dispatch('ui.authModal.getCredentials', 'signin');
+  dispatch('auth.login', { email, password })
+    .then(() => dispatch('ui.authModal.toggle', 'close')) // or show a success message
+    .catch((errors) => dispatch('ui.authModal.setSigninErrors', errors.message));
 };
 
-const handleOnSubmitFormRegister = () => {
-  dispatch('auth.register');
+const handleOnSubmitFormRegister = (e) => {
+  e.preventDefault();
+  const { email, password } = dispatch('ui.authModal.getCredentials', 'signup');
+  dispatch('auth.register', { email, password })
+    .then(() => dispatch('ui.authModal.toggle', 'close')) // or show a success message
+    .catch((errors) => dispatch('ui.authModal.setSignupErrors', errors.message));
 };
 
 const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, signupErrors }) => (
@@ -63,14 +71,14 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
       <div className="inline-block clearfix blue">
         <button
           onClick={handleShowSigninSection}
-          className={cx(btnGrp, 'rounded-left', {
+          className={cx(buttonGroup, 'rounded-left', {
             'btn-primary': showSection === 'signin',
             'btn-outline': showSection !== 'signin',
           })}
         >Login</button>
         <button
           onClick={handleShowSignupSection}
-          className={cx(btnGrp, 'rounded-right', {
+          className={cx(buttonGroup, 'rounded-right', {
             'btn-primary': showSection === 'signup',
             'btn-outline': showSection !== 'signup',
           })}
@@ -78,9 +86,7 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
       </div>
     </div>
 
-    <div className={cx('center', 'fit', 'col-8', 'px2', 'mx-auto',
-      { hide: showSection !== 'signin' })}
-    >
+    <div className={cx(authSection, { hide: showSection !== 'signin' })}>
       <h3>Login</h3>
       <form onSubmit={handleOnSubmitFormLogin}>
         <input
@@ -101,9 +107,8 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
         <div className={cx({ hide: !signinErrors })}>{signinErrors}</div>
       </form>
     </div>
-    <div className={cx('center', 'fit', 'col-8', 'px2', 'mx-auto',
-      { hide: showSection !== 'signup' })}
-    >
+
+    <div className={cx(authSection, { hide: showSection !== 'signup' })}>
       <h3>Register</h3>
       <form onSubmit={handleOnSubmitFormRegister}>
         <input

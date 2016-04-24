@@ -44,4 +44,22 @@ export default class AuthModal {
   updateFields(formValue) {
     _.merge(this.signinModel, formValue);
   }
+
+  @action
+  setSigninErrors(data) {
+    console.log('setSigninErrors', data);
+    this.signinErrors = data;
+  }
+
+  @action
+  setSignupErrors(data) {
+    this.signupErrors = data;
+  }
+
+  @action
+  getCredentials(type = null) {
+    if (type === 'signin') return this.signinModel;
+    if (type === 'signup') return this.signupModel;
+    return null;
+  }
 }

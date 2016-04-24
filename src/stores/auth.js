@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 export default class AuthStore {
 
-  @observable user = {};
+  @observable user = null;
 
   constructor(auth) {
     Object.assign(this, auth);
@@ -27,9 +27,7 @@ export default class AuthStore {
       email,
       password,
     })
-    .then((result) => this.updateUser(result.data))
-    .then((result) => console.log('Authenticated!', result))
-    .catch((error) => console.error('Error authenticating!', error));
+    .then((result) => this.updateUser(result.data));
   }
 
   @action
