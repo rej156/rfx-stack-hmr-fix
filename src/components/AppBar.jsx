@@ -23,6 +23,16 @@ const handleMenuAccountToggle = (e) => {
   dispatch('ui.toggleAppBarMenuAccount');
 };
 
+const handleAuthModalSignin = (e) => {
+  e.preventDefault();
+  dispatch('ui.authModal.toggle', 'open', 'signin');
+};
+
+const handleAuthModalSignup = (e) => {
+  e.preventDefault();
+  dispatch('ui.authModal.toggle', 'open', 'signup');
+};
+
 const AppBar = ({ open }) => (
   <div className={cx(styles.bar, 'clearfix')}>
     <div className="left">
@@ -34,10 +44,13 @@ const AppBar = ({ open }) => (
     <div className={cx('right')}>
       <div className={cx('inline-block')}>
         <div className={cx('relative')}>
-          <a
-            onClick={handleMenuAccountToggle}
-            className={button}
-          >
+          <a onClick={handleAuthModalSignin} className={button}>
+            Login
+          </a>
+          <a onClick={handleAuthModalSignup} className={button}>
+            Register
+          </a>
+          <a onClick={handleMenuAccountToggle} className={button}>
             My Account &#9662;
           </a>
           <div className=

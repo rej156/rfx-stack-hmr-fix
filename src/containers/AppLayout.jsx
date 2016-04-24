@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from '../state/context';
-
 import cx from 'classnames';
 
 // dev tools
@@ -9,9 +8,10 @@ import DevTools from 'mobx-react-devtools';
 
 // components
 import { StickyContainer, Sticky } from 'react-sticky';
-import { MatchMediaProvider } from '../utils/matchMedia';
+import { MatchMediaProvider } from '../utils/MatchMediaProvider';
 import AppBar from '../components/AppBar';
 import AppNav from '../components/AppNav';
+import AuthModal from '../components/AuthModal';
 
 // global styles
 import '../styles/_.global.css';
@@ -19,13 +19,17 @@ import '../styles/_.global.css';
 // module styles
 import styles from '../styles/app.layout.css';
 
-const navBtn = cx('btn', 'block');
-
 @connect
-export default class AppLayout extends Component {
+export default
+class AppLayout extends Component {
 
   static propTypes = {
-    children: React.PropTypes.object,
+    children: React.PropTypes.node,
+    location: React.PropTypes.object,
+    params: React.PropTypes.object,
+    routeParams: React.PropTypes.object,
+    route: React.PropTypes.object,
+    routes: React.PropTypes.array,
   };
 
   handleAppNavRequestChange = (open) => {
@@ -33,35 +37,38 @@ export default class AppLayout extends Component {
   };
 
   render() {
+    const { location, params, routeParams, route, routes } = this.props;
     const ui = this.context.store.ui;
-    const layoutIsShifted = ui.layoutIsShifted;
-    const appNavIsOpen = ui.appNavIsOpen;
-    const appNavIsDocked = ui.appNavIsDocked;
-    const menuAccountIsOpen = ui.appBarMenuAccountIsOpen;
 
     return (
-      <MatchMediaProvider context={this.context}>
+      <MatchMediaProvider breakpoints={ui.breakpoints}>
         <StickyContainer className={cx('animated', 'fadeIn')}>
           { isDev ? <DevTools /> : null }
           <AppNav
-            open={appNavIsOpen}
-            docked={appNavIsDocked}
+            open={ui.appNavIsOpen}
+            docked={ui.appNavIsDocked}
             onRequestChange={this.handleAppNavRequestChange}
           >
-            <a className={navBtn}>Link A</a>
-            <a className={navBtn}>Link B</a>
-            <a className={navBtn}>Link C</a>
-            <a className={navBtn}>Link D</a>
-            <a className={navBtn}>Link E</a>
+            <h3 className={cx('m2')}>React Router Info</h3>
+            <pre>
+              <ul className={cx('list-reset', 'm2')}>
+                <li><b>Location</b> {JSON.stringify(location, undefined, 2)}</li>
+                <li><b>Params</b> {JSON.stringify(params, undefined, 2)}</li>
+                <li><b>Route Params</b> {JSON.stringify(routeParams, undefined, 2)}</li>
+                <li><b>Route</b> {JSON.stringify(route, undefined, 2)}</li>
+                <li><b>Routes</b> {JSON.stringify(routes, undefined, 2)}</li>
+              </ul>
+            </pre>
           </AppNav>
-          <div className={cx({ [styles.su]: layoutIsShifted })}>
+          <div className={cx({ [styles.su]: ui.layoutIsShifted })}>
             <Sticky className={cx('animated', 'slideInDown')}>
-              <AppBar open={menuAccountIsOpen} />
+              <AppBar open={ui.appBarMenuAccountIsOpen} />
             </Sticky>
             <div className={styles.content}>
               {this.props.children}
             </div>
           </div>
+          <AuthModal open={ui.modalIsOpen} />
         </StickyContainer>
       </MatchMediaProvider>
     );
