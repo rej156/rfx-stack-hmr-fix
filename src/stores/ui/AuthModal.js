@@ -7,7 +7,7 @@ export default class AuthModal {
 
   @observable showSection = 'signin';
 
-  credentials = {
+  @observable credentials = {
     username: '',
     password: '',
   };
@@ -22,7 +22,6 @@ export default class AuthModal {
     if (flag === 'open') this.isOpen = true;
     if (flag === 'close') this.isOpen = false;
   }
-
 
   @action
   section(to = 'signin') {

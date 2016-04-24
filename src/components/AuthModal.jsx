@@ -45,6 +45,18 @@ const handleOnInvalid = () => {
 
 const canSubmit = () => true;
 
+const handleOnChangeUsername = (e) => {
+  dispatch('ui.authModal.updateFields', {
+    username: e.target.value,
+  });
+};
+
+const handleOnChangePassword = (e) => {
+  dispatch('ui.authModal.updateFields', {
+    password: e.target.value,
+  });
+};
+
 
 const AuthModal = ({ open, credentials }) => (
   <Modal
@@ -60,16 +72,16 @@ const AuthModal = ({ open, credentials }) => (
       onInvalid={handleOnInvalid}
     >
       <input required
-        ref="username"
         name="username"
         value={credentials.username}
+        onChange={handleOnChangeUsername}
         validations="isEmail"
         validationError="This is not a valid username"
       />
       <input required
-        ref="password"
         name="password"
         value={credentials.password}
+        onChange={handleOnChangePassword}
         validations="isAlphanumeric"
         validationError="This is not a valid password"
       />
