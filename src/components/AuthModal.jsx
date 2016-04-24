@@ -44,11 +44,14 @@ const handleOnChangePassword = (e) =>
     password: e.target.value,
   });
 
-const handleOnSubmitFormLogin = () =>
-  dispatch('auth.login');
+const handleOnSubmitFormLogin = () => {
+  const result = dispatch('auth.login');
+  console.log('result', result);
+};
 
-const handleOnSubmitFormRegister = () =>
+const handleOnSubmitFormRegister = () => {
   dispatch('auth.register');
+};
 
 const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, signupErrors }) => (
   <Modal
@@ -126,7 +129,7 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
 
 AuthModal.propTypes = {
   open: React.PropTypes.bool,
-  showSection: React.PropTypes.sring,
+  showSection: React.PropTypes.string,
   signinModel: React.PropTypes.object,
   signupModel: React.PropTypes.object,
   signinErrors: React.PropTypes.string,
