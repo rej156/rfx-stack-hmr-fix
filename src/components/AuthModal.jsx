@@ -83,12 +83,14 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
         <input
           className="field rounded fit mb1 p1"
           name="email"
+          placeholder="Email"
           onChange={handleOnChangeUsername}
           value={signinModel.email}
         />
         <input
           className="field rounded fit mb1 p1"
           name="password"
+          placeholder="Password"
           onChange={handleOnChangePassword}
           value={signinModel.password}
         />
@@ -104,12 +106,14 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
         <input
           className="field rounded fit mb1 p1"
           name="email"
+          placeholder="Email"
           onChange={handleOnChangeUsername}
           value={signupModel.email}
         />
         <input
           className="field rounded fit mb1 p1"
           name="password"
+          placeholder="Password"
           onChange={handleOnChangePassword}
           value={signupModel.password}
         />
