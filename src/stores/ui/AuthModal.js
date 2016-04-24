@@ -8,8 +8,17 @@ export default class AuthModal {
 
   @observable showSection = 'signin';
 
-  @observable credentials = {
-    username: '',
+  @observable signinErrors = null;
+
+  @observable signupErrors = null;
+
+  @observable signinModel = {
+    email: '',
+    password: '',
+  };
+
+  @observable signupModel = {
+    email: '',
     password: '',
   };
 
@@ -25,7 +34,7 @@ export default class AuthModal {
   }
 
   @action
-  section(to = 'signin') {
+  toggleSection(to = 'signin') {
     if (!to) this.showSection = 'signin';
     if (to === 'signin') this.showSection = 'signin';
     if (to === 'signup') this.showSection = 'signup';
@@ -33,6 +42,6 @@ export default class AuthModal {
 
   @action
   updateFields(formValue) {
-    _.merge(this.credentials, formValue);
+    _.merge(this.signinModel, formValue);
   }
 }

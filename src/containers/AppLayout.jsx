@@ -68,7 +68,12 @@ class AppLayout extends Component {
               {this.props.children}
             </div>
           </div>
-          <AuthModal open={ui.authModal.isOpen} credentials={ui.authModal.credentials} />
+          <AuthModal
+            open={ui.authModal.isOpen}
+            showSection={ui.authModal.showSection}
+            signinModel={ui.authModal.signinModel}
+            signupModel={ui.authModal.signupModel}
+          />
         </StickyContainer>
       </MatchMediaProvider>
     );

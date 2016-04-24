@@ -1,6 +1,6 @@
 import { observable } from 'mobx';
 import { action } from '../state/actions';
-import { app } from '../app';
+import { app, service } from '../app';
 import _ from 'lodash';
 
 export default class AuthStore {
@@ -30,6 +30,11 @@ export default class AuthStore {
     .then((result) => this.updateUser(result.data))
     .then((result) => console.log('Authenticated!', result))
     .catch((error) => console.error('Error authenticating!', error));
+  }
+
+  @action
+  register({ email, password }) {
+    return service('user').create({ email, password });
   }
 
   @action

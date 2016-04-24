@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from '../state/context';
 import { dispatch } from '../state/dispatcher';
+import cx from 'classnames';
 
 // components
 import Modal from 'react-modal';
-import { Form } from 'formsy-react';
 
 // styles
 const styles = {
@@ -23,66 +23,69 @@ const styles = {
   },
 };
 
-const handleCloseModal = () => {
+const handleCloseModal = () =>
   dispatch('ui.authModal.toggle', 'close');
-};
 
-const handleOnValidSubmit = (credentials) => {
-  console.log('handleOnValidSubmit', credentials);
-  dispatch('auth.login', credentials);
-};
+const handleShowSigninSection = () =>
+  dispatch('ui.authModal.toggleSection', 'signin');
 
-const handleOnValid = () => console.log('valid');
-const handleOnInvalid = () => console.log('invalid');
+const handleShowSignupSection = () =>
+  dispatch('ui.authModal.toggleSection', 'signup');
 
-const canSubmit = () => true;
-
-const handleOnChangeUsername = (e) => {
+const handleOnChangeUsername = (e) =>
   dispatch('ui.authModal.updateFields', {
-    username: e.target.value,
+    email: e.target.value,
   });
-};
 
-const handleOnChangePassword = (e) => {
+const handleOnChangePassword = (e) =>
   dispatch('ui.authModal.updateFields', {
     password: e.target.value,
   });
-};
 
-const AuthModal = ({ open, credentials }) => (
+const handleOnSubmitFormLogin = () =>
+  dispatch('auth.login');
+
+const handleOnSubmitFormRegister = () =>
+  dispatch('auth.register');
+
+const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, signupErrors }) => (
   <Modal
     isOpen={open}
     onRequestClose={handleCloseModal}
     style={styles}
   >
-    <h3>Login</h3>
-    <Form
-      onValidSubmit={handleOnValidSubmit}
-      onValid={handleOnValid}
-      onInvalid={handleOnInvalid}
-    >
-      <input required
-        name="username"
-        value={credentials.username}
-        onChange={handleOnChangeUsername}
-        validations="isEmail"
-        validationError="This is not a valid username"
-      />
-      <input required
-        name="password"
-        value={credentials.password}
-        onChange={handleOnChangePassword}
-        validations="isAlphanumeric"
-        validationError="This is not a valid password"
-      />
-      <button type="submit" disabled={!canSubmit}>Submit</button>
-    </Form>
+    <ul>
+      <li><a onClick={handleShowSigninSection}>Login</a></li>
+      <li><a onClick={handleShowSignupSection}>Register</a></li>
+    </ul>
+    <div className={cx({ hide: showSection !== 'signin' })}>
+      <h3>Login</h3>
+      <form onSubmit={handleOnSubmitFormLogin}>
+        <input name="email" onChange={handleOnChangeUsername} value={signinModel.email} />
+        <input name="password" onChange={handleOnChangePassword} value={signinModel.password} />
+        <button type="submit">Login</button>
+        <div className={cx({ hide: !signinErrors })}>{signinErrors}</div>
+      </form>
+    </div>
+    <div className={cx({ hide: showSection !== 'signup' })}>
+      <h3>Register</h3>
+      <form onSubmit={handleOnSubmitFormRegister}>
+        <input name="email" onChange={handleOnChangeUsername} value={signupModel.email} />
+        <input name="password" onChange={handleOnChangePassword} value={signupModel.password} />
+        <button type="submit">Register</button>
+        <div className={cx({ hide: !signupErrors })}>{signupErrors}</div>
+      </form>
+    </div>
   </Modal>
 );
 
 AuthModal.propTypes = {
   open: React.PropTypes.bool,
-  credentials: React.PropTypes.object,
+  showSection: React.PropTypes.sring,
+  signinModel: React.PropTypes.object,
+  signupModel: React.PropTypes.object,
+  signinErrors: React.PropTypes.string,
+  signupErrors: React.PropTypes.string,
 };
 
 export default connect(AuthModal);
