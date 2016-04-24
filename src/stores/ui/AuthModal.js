@@ -1,5 +1,6 @@
 import { observable } from 'mobx';
 import { action } from '~/src/state/actions';
+import _ from 'lodash';
 
 export default class AuthModal {
 
@@ -32,6 +33,6 @@ export default class AuthModal {
 
   @action
   updateFields(formValue) {
-    this.credentials = formValue;
+    _.merge(this.credentials, formValue);
   }
 }
