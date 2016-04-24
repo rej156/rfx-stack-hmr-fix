@@ -1,8 +1,8 @@
 import { observable } from 'mobx';
 import { action } from '../state/actions';
 import { app, service } from '../app';
+import uuid from 'node-uuid';
 import _ from 'lodash';
-import faker from 'faker';
 
 export default class AuthStore {
 
@@ -32,10 +32,9 @@ export default class AuthStore {
   }
 
   @action
-  register({ email, password }) {
-    return service('user').create({ email, password,
-      username: faker.internet.userName(),
-      uuid: faker.random.uuid(),
+  register({ email, password, username }) {
+    return service('user').create({ email, password, username,
+      uuid: uuid.v4(),
     });
   }
 

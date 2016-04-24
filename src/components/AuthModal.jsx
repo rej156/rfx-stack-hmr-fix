@@ -55,8 +55,8 @@ const handleOnSubmitFormLogin = (e) => {
 
 const handleOnSubmitFormRegister = (e) => {
   e.preventDefault();
-  const { email, password } = dispatch('ui.authModal.getCredentials', 'signup');
-  dispatch('auth.register', { email, password })
+  const { email, password, username } = dispatch('ui.authModal.getCredentials', 'signup');
+  dispatch('auth.register', { email, password, username })
     .then(() => dispatch('ui.authModal.toggle', 'close')) // or show a success message
     .catch((errors) => dispatch('ui.authModal.setSignupErrors', errors.message));
 };
@@ -86,7 +86,7 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
       </div>
     </div>
 
-    <div className={cx(authSection, { hide: showSection === 'signin' })}>
+    <div className={cx(authSection, { hide: showSection !== 'signin' })}>
       <h3>Login</h3>
       <form onSubmit={handleOnSubmitFormLogin}>
         <input
@@ -108,9 +108,16 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
       </form>
     </div>
 
-    <div className={cx(authSection, { hide: showSection === 'signup' })}>
+    <div className={cx(authSection, { hide: showSection !== 'signup' })}>
       <h3>Register</h3>
       <form onSubmit={handleOnSubmitFormRegister}>
+        <input
+          className="field rounded fit mb1 p1"
+          name="username"
+          placeholder="Username"
+          onChange={handleOnChangeSignupInput}
+          value={signupModel.username}
+        />
         <input
           className="field rounded fit mb1 p1"
           name="email"

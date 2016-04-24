@@ -20,6 +20,7 @@ export default class AuthModal {
   @observable signupModel = {
     email: '',
     password: '',
+    username: '',
   };
 
   constructor(auth) {
