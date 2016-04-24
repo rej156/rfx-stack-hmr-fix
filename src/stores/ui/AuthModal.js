@@ -41,8 +41,13 @@ export default class AuthModal {
   }
 
   @action
-  updateFields(formValue) {
-    _.merge(this.signinModel, formValue);
+  updateSigninModel(newValue) {
+    _.merge(this.signinModel, newValue);
+  }
+
+  @action
+  updateSignupModel(newValue) {
+    _.merge(this.signupModel, newValue);
   }
 
   @action

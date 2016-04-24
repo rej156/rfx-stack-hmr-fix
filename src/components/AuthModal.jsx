@@ -35,14 +35,14 @@ const handleShowSigninSection = () =>
 const handleShowSignupSection = () =>
   dispatch('ui.authModal.toggleSection', 'signup');
 
-const handleOnChangeUsername = (e) =>
-  dispatch('ui.authModal.updateFields', {
-    email: e.target.value,
+const handleOnChangeSigninInput = (e) =>
+  dispatch('ui.authModal.updateSigninModel', {
+    [e.target.name]: e.target.value,
   });
 
-const handleOnChangePassword = (e) =>
-  dispatch('ui.authModal.updateFields', {
-    password: e.target.value,
+const handleOnChangeSignupInput = (e) =>
+  dispatch('ui.authModal.updateSignupModel', {
+    [e.target.name]: e.target.value,
   });
 
 const handleOnSubmitFormLogin = (e) => {
@@ -86,21 +86,21 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
       </div>
     </div>
 
-    <div className={cx(authSection, { hide: showSection !== 'signin' })}>
+    <div className={cx(authSection, { hide: showSection === 'signin' })}>
       <h3>Login</h3>
       <form onSubmit={handleOnSubmitFormLogin}>
         <input
           className="field rounded fit mb1 p1"
           name="email"
           placeholder="Email"
-          onChange={handleOnChangeUsername}
+          onChange={handleOnChangeSigninInput}
           value={signinModel.email}
         />
         <input
           className="field rounded fit mb1 p1"
           name="password"
           placeholder="Password"
-          onChange={handleOnChangePassword}
+          onChange={handleOnChangeSigninInput}
           value={signinModel.password}
         />
         <div><button type="submit" className="btn btn-primary">Login</button></div>
@@ -108,21 +108,21 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
       </form>
     </div>
 
-    <div className={cx(authSection, { hide: showSection !== 'signup' })}>
+    <div className={cx(authSection, { hide: showSection === 'signup' })}>
       <h3>Register</h3>
       <form onSubmit={handleOnSubmitFormRegister}>
         <input
           className="field rounded fit mb1 p1"
           name="email"
           placeholder="Email"
-          onChange={handleOnChangeUsername}
+          onChange={handleOnChangeSignupInput}
           value={signupModel.email}
         />
         <input
           className="field rounded fit mb1 p1"
           name="password"
           placeholder="Password"
-          onChange={handleOnChangePassword}
+          onChange={handleOnChangeSignupInput}
           value={signupModel.password}
         />
         <div><button type="submit" className="btn btn-primary">Register</button></div>
