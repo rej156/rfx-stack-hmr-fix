@@ -58,21 +58,45 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
       <li><a onClick={handleShowSigninSection}>Login</a></li>
       <li><a onClick={handleShowSignupSection}>Register</a></li>
     </ul>
-    <div className={cx({ hide: showSection !== 'signin' })}>
+    <div className={cx('center', 'fit', 'col-8', 'px2', 'mx-auto',
+      { hide: showSection !== 'signin' })}
+    >
       <h3>Login</h3>
       <form onSubmit={handleOnSubmitFormLogin}>
-        <input name="email" onChange={handleOnChangeUsername} value={signinModel.email} />
-        <input name="password" onChange={handleOnChangePassword} value={signinModel.password} />
-        <button type="submit">Login</button>
+        <input
+          className="field rounded fit mb1 p1"
+          name="email"
+          onChange={handleOnChangeUsername}
+          value={signinModel.email}
+        />
+        <input
+          className="field rounded fit mb1 p1"
+          name="password"
+          onChange={handleOnChangePassword}
+          value={signinModel.password}
+        />
+        <div><button type="submit" className="btn btn-primary">Login</button></div>
         <div className={cx({ hide: !signinErrors })}>{signinErrors}</div>
       </form>
     </div>
-    <div className={cx({ hide: showSection !== 'signup' })}>
+    <div className={cx('center', 'fit', 'col-8', 'px2', 'mx-auto',
+      { hide: showSection !== 'signup' })}
+    >
       <h3>Register</h3>
       <form onSubmit={handleOnSubmitFormRegister}>
-        <input name="email" onChange={handleOnChangeUsername} value={signupModel.email} />
-        <input name="password" onChange={handleOnChangePassword} value={signupModel.password} />
-        <button type="submit">Register</button>
+        <input
+          className="field rounded fit mb1 p1"
+          name="email"
+          onChange={handleOnChangeUsername}
+          value={signupModel.email}
+        />
+        <input
+          className="field rounded fit mb1 p1"
+          name="password"
+          onChange={handleOnChangePassword}
+          value={signupModel.password}
+        />
+        <div><button type="submit" className="btn btn-primary">Register</button></div>
         <div className={cx({ hide: !signupErrors })}>{signupErrors}</div>
       </form>
     </div>
