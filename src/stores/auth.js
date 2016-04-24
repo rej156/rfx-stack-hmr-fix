@@ -21,7 +21,7 @@ export default class AuthStore {
   }
 
   @action
-  auth({ email, password }) {
+  login({ email, password }) {
     return app().authenticate({
       type: 'local',
       email,

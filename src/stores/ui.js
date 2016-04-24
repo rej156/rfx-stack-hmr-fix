@@ -11,7 +11,6 @@ export default class UIStore {
 
   mui = {};
 
-  @observable modalIsOpen = true;
   @observable appNavIsOpen = true;
   @observable appNavIsDocked = false;
   @observable appBarMenuAccountIsOpen = false;
@@ -73,14 +72,6 @@ export default class UIStore {
   shiftLayout(flag = null) {
     if (flag === 'yes') this.layoutIsShifted = true;
     if (flag === 'no') this.layoutIsShifted = false;
-  }
-
-  @action
-  toggleModal(flag = null) {
-    if (!flag) this.modalIsOpen = !this.modalIsOpen;
-    if (flag === 'open') this.modalIsOpen = true;
-    if (flag === 'close') this.modalIsOpen = false;
-    console.log(this.modalIsOpen);
   }
 
   @action

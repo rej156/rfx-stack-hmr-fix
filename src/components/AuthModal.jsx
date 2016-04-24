@@ -4,7 +4,7 @@ import { dispatch } from '../state/dispatcher';
 
 // components
 import Modal from 'react-modal';
-import { Fieldset, Field, createValue } from 'react-forms';
+import { Form } from 'formsy-react';
 
 // styles
 const styles = {
@@ -25,38 +25,62 @@ const styles = {
 
 const handleCloseModal = () => {
   console.log('handleCloseModal');
-  dispatch('ui.toggleModal', 'close');
+  dispatch('ui.authModal.toggle', 'close');
 };
 
-const value = '';
-const onChange = () => {
-  // onChange, stores etc.
+const handleOnChange = (formValue) => {
+  console.log('onChange', formValue);
+  dispatch('ui.authModal.updateFields', formValue);
 };
-const schema = {
-  type: 'object',
-  properties: {
-    username: { type: 'string' },
-    password: { type: 'string' },
-  },
-};
-let formValue = createValue({ schema, value, onChange });
 
-const AuthModal = ({ open }) => (
+const handleOnValidSubmit = (value) => {
+  console.log('handleOnValidSubmit', value);
+  // dispatch('auth.login', credentials)
+};
+
+const handleOnValid = () => {};
+const handleOnInvalid = () => {
+  window.alert('invalid');
+};
+
+const canSubmit = () => true;
+
+
+const AuthModal = ({ open, credentials }) => (
   <Modal
     isOpen={open}
     onRequestClose={handleCloseModal}
     style={styles}
   >
     <h3>Login</h3>
-    <Fieldset formValue={formValue}>
-      <Field select="username" label="Username" />
-      <Field select="password" label="Password" />
-    </Fieldset>
+    <Form
+      onChange={handleOnChange}
+      onValidSubmit={handleOnValidSubmit}
+      onValid={handleOnValid}
+      onInvalid={handleOnInvalid}
+    >
+      <input required
+        ref="username"
+        name="username"
+        value={credentials.username}
+        validations="isEmail"
+        validationError="This is not a valid username"
+      />
+      <input required
+        ref="password"
+        name="password"
+        value={credentials.password}
+        validations="isAlphanumeric"
+        validationError="This is not a valid password"
+      />
+      <button type="submit" disabled={!canSubmit}>Submit</button>
+    </Form>
   </Modal>
 );
 
 AuthModal.propTypes = {
   open: React.PropTypes.bool,
+  credentials: React.PropTypes.object,
 };
 
 export default connect(AuthModal);
