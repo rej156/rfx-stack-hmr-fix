@@ -24,24 +24,16 @@ const styles = {
 };
 
 const handleCloseModal = () => {
-  console.log('handleCloseModal');
   dispatch('ui.authModal.toggle', 'close');
 };
 
-const handleOnChange = (formValue) => {
-  console.log('onChange', formValue);
-  dispatch('ui.authModal.updateFields', formValue);
+const handleOnValidSubmit = (credentials) => {
+  console.log('handleOnValidSubmit', credentials);
+  dispatch('auth.login', credentials);
 };
 
-const handleOnValidSubmit = (value) => {
-  console.log('handleOnValidSubmit', value);
-  // dispatch('auth.login', credentials)
-};
-
-const handleOnValid = () => {};
-const handleOnInvalid = () => {
-  window.alert('invalid');
-};
+const handleOnValid = () => console.log('valid');
+const handleOnInvalid = () => console.log('invalid');
 
 const canSubmit = () => true;
 
@@ -57,7 +49,6 @@ const handleOnChangePassword = (e) => {
   });
 };
 
-
 const AuthModal = ({ open, credentials }) => (
   <Modal
     isOpen={open}
@@ -66,7 +57,6 @@ const AuthModal = ({ open, credentials }) => (
   >
     <h3>Login</h3>
     <Form
-      onChange={handleOnChange}
       onValidSubmit={handleOnValidSubmit}
       onValid={handleOnValid}
       onInvalid={handleOnInvalid}
