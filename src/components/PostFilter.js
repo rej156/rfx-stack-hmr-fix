@@ -5,7 +5,7 @@ import cx from 'classnames';
 
 // styles
 // import styles from '../styles/post.filter.css';
-const button = cx(['btn', 'left', 'x-group-item']);
+const btnGrp = cx(['btn', 'left', 'x-group-item']);
 
 const handleSelect = (e) => {
   e.preventDefault();
@@ -18,7 +18,7 @@ const PostFilter = ({ filter }) => (
     <button
       type="button" value="all"
       onClick={handleSelect}
-      className={cx(button, 'rounded-left', {
+      className={cx(btnGrp, 'rounded-left', {
         'btn-outline': filter !== 'all',
         'btn-primary': filter === 'all',
       })}
@@ -26,7 +26,7 @@ const PostFilter = ({ filter }) => (
     <button
       type="button" value="todo"
       onClick={handleSelect}
-      className={cx(button, 'not-rounded', {
+      className={cx(btnGrp, 'not-rounded', {
         'btn-outline': filter !== 'todo',
         'btn-primary': filter === 'todo',
       })}
@@ -34,7 +34,7 @@ const PostFilter = ({ filter }) => (
     <button
       type="button" value="done"
       onClick={handleSelect}
-      className={cx(button, 'rounded-right', {
+      className={cx(btnGrp, 'rounded-right', {
         'btn-outline': filter !== 'done',
         'btn-primary': filter === 'done',
       })}

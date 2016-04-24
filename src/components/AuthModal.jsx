@@ -7,6 +7,8 @@ import cx from 'classnames';
 import Modal from 'react-modal';
 
 // styles
+const btnGrp = cx(['btn', 'left', 'x-group-item']);
+
 const styles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.75)',
@@ -14,8 +16,8 @@ const styles = {
   content: {
     border: 0,
     padding: 0,
-    maxWidth: '500px',
-    maxHeight: '500px',
+    maxWidth: '350px',
+    maxHeight: '350px',
     marginTop: 'auto',
     marginBottom: 'auto',
     marginLeft: 'auto',
@@ -54,10 +56,25 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
     onRequestClose={handleCloseModal}
     style={styles}
   >
-    <ul>
-      <li><a onClick={handleShowSigninSection}>Login</a></li>
-      <li><a onClick={handleShowSignupSection}>Register</a></li>
-    </ul>
+    <div className="center m3">
+      <div className="inline-block clearfix blue">
+        <button
+          onClick={handleShowSigninSection}
+          className={cx(btnGrp, 'rounded-left', {
+            'btn-primary': showSection === 'signin',
+            'btn-outline': showSection !== 'signin',
+          })}
+        >Login</button>
+        <button
+          onClick={handleShowSignupSection}
+          className={cx(btnGrp, 'rounded-right', {
+            'btn-primary': showSection === 'signup',
+            'btn-outline': showSection !== 'signup',
+          })}
+        >Register</button>
+      </div>
+    </div>
+
     <div className={cx('center', 'fit', 'col-8', 'px2', 'mx-auto',
       { hide: showSection !== 'signin' })}
     >
