@@ -4,6 +4,7 @@ import { dispatch } from '../state/dispatcher';
 
 // components
 import Modal from 'react-modal';
+import { Fieldset, Field, createValue } from 'react-forms';
 
 // styles
 const styles = {
@@ -27,14 +28,30 @@ const handleCloseModal = () => {
   dispatch('ui.toggleModal', 'close');
 };
 
+const value = '';
+const onChange = () => {
+  // onChange, stores etc.
+};
+const schema = {
+  type: 'object',
+  properties: {
+    username: { type: 'string' },
+    password: { type: 'string' },
+  },
+};
+let formValue = createValue({ schema, value, onChange });
+
 const AuthModal = ({ open }) => (
   <Modal
     isOpen={open}
     onRequestClose={handleCloseModal}
     style={styles}
   >
-    <h1>Modal Content</h1>
-    <p>Etc.</p>
+    <h3>Login</h3>
+    <Fieldset formValue={formValue}>
+      <Field select="username" label="Username" />
+      <Field select="password" label="Password" />
+    </Fieldset>
   </Modal>
 );
 
