@@ -23,8 +23,8 @@ export default class AuthModal {
     username: '',
   };
 
-  constructor(auth) {
-    Object.assign(this, auth);
+  constructor(data) {
+    Object.assign(this, data);
   }
 
   @action

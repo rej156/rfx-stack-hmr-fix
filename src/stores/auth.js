@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, computed } from 'mobx';
 import { action } from '../state/actions';
 import { app, service } from '../app';
 import _ from 'lodash';
@@ -12,12 +12,13 @@ export default class AuthStore {
   constructor(auth) {
     Object.assign(this, auth);
 
-    // auto-login with localstorage
-    this.jwtAuth({
-      token: global.CLIENT
+    // get token from localStorage
+    const token = global.CLIENT
       ? window.localStorage.token
-      : null,
-    });
+      : null;
+
+    // auto-login with jwt
+    if (token) this.jwtAuth({ token });
   }
 
   updateUser(user) {
@@ -31,8 +32,9 @@ export default class AuthStore {
   }
 
   @action
-  check() {
-    return _.isEmpty(this.user);
+  @computed
+  get check() {
+    return !_.isEmpty(this.user);
   }
 
   @action

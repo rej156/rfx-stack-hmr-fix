@@ -64,7 +64,11 @@ class AppLayout extends Component {
           </AppNav>
           <div className={cx({ [styles.su]: ui.layoutIsShifted })}>
             <Sticky className={cx('animated', 'slideInDown')}>
-              <AppBar open={ui.appBarMenuAccountIsOpen} />
+              <AppBar
+                open={ui.appBar.accountMenuIsOpen}
+                check={auth.check}
+                user={auth.user}
+              />
             </Sticky>
             <div className={styles.content}>
               {this.props.children}
