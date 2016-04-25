@@ -7,9 +7,9 @@ import cx from 'classnames';
 import Modal from 'react-modal';
 
 // styles
-const buttonGroup = cx(['btn', 'left', 'x-group-item']);
-const authSection = cx(['center', 'fit', 'col-8', 'px2', 'mx-auto']);
-const errorMessage = cx(['red', 'm1']);
+const buttonGroup = cx('btn', 'left', 'x-group-item');
+const authSection = cx('center', 'fit', 'col-8', 'px2', 'mx-auto');
+const errorMessage = cx('red', 'm1');
 
 const styles = {
   overlay: {
@@ -50,7 +50,8 @@ const handleOnSubmitFormLogin = (e) => {
   e.preventDefault();
   const { email, password } = dispatch('ui.authModal.getCredentials', 'signin');
   dispatch('auth.login', { email, password })
-    .then(() => dispatch('ui.authModal.toggle', 'close')) // or show a success message
+    .then(() => dispatch('ui.authModal.toggle', 'close'))
+    .then(() => alert('Login Successful')) // eslint-disable-line no-alert
     .catch((errors) => dispatch('ui.authModal.setSigninErrors', errors.message));
 };
 
@@ -58,7 +59,8 @@ const handleOnSubmitFormRegister = (e) => {
   e.preventDefault();
   const { email, password, username } = dispatch('ui.authModal.getCredentials', 'signup');
   dispatch('auth.register', { email, password, username })
-    .then(() => dispatch('ui.authModal.toggle', 'close')) // or show a success message
+    .then(() => dispatch('ui.authModal.toggle', 'close'))
+    .then(() => alert('Register Successful')) // eslint-disable-line no-alert
     .catch((errors) => dispatch('ui.authModal.setSignupErrors', errors.message));
 };
 

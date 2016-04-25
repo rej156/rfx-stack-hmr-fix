@@ -5,7 +5,7 @@ import cx from 'classnames';
 
 // styles
 // import styles from '../styles/post.filter.css';
-const buttonGroup = cx(['btn', 'left', 'x-group-item']);
+const buttonGroup = cx('btn', 'left', 'x-group-item');
 
 const handleSelect = (e) => {
   e.preventDefault();
