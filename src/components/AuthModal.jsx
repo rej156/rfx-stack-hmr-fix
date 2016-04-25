@@ -9,6 +9,7 @@ import Modal from 'react-modal';
 // styles
 const buttonGroup = cx(['btn', 'left', 'x-group-item']);
 const authSection = cx(['center', 'fit', 'col-8', 'px2', 'mx-auto']);
+const errorMessage = cx(['red', 'm1']);
 
 const styles = {
   overlay: {
@@ -104,7 +105,7 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
           value={signinModel.password}
         />
         <div><button type="submit" className="btn btn-primary">Login</button></div>
-        <div className={cx('red', 'm1', { hide: !signinErrors })}>{signinErrors}</div>
+        <div className={cx(errorMessage, { hide: !signinErrors })}>{signinErrors}</div>
       </form>
     </div>
 
@@ -133,7 +134,7 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
           value={signupModel.password}
         />
         <div><button type="submit" className="btn btn-primary">Register</button></div>
-        <div className={cx('red', 'm1', { hide: !signupErrors })}>{signupErrors}</div>
+        <div className={cx(errorMessage, { hide: !signupErrors })}>{signupErrors}</div>
       </form>
     </div>
   </Modal>
