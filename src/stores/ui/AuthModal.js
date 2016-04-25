@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 export default class AuthModal {
 
-  @observable isOpen = true;
+  @observable isOpen = false;
 
   @observable showSection = 'signin';
 

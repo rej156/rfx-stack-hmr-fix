@@ -12,19 +12,22 @@ export default class AuthStore {
   constructor(auth) {
     Object.assign(this, auth);
 
-    this.jwtAuth();
+    // auto-login with localstorage
+    this.jwtAuth({
+      token: global.CLIENT
+      ? window.localStorage.token
+      : null,
+    });
   }
 
   updateUser(user) {
     this.user = user;
   }
 
-  jwtAuth() {
-    return app().authenticate({
-      type: 'token',
-      token: global.CLIENT ? window.localStorage.token : null,
-    })
-    .then((result) => this.updateUser(result.data));
+  jwtAuth({ token }) {
+    return app()
+      .authenticate({ type: 'token', token })
+      .then((result) => this.updateUser(result.data));
   }
 
   @action
@@ -34,12 +37,9 @@ export default class AuthStore {
 
   @action
   login({ email, password }) {
-    return app().authenticate({
-      type: 'local',
-      email,
-      password,
-    })
-    .then((result) => this.updateUser(result.data));
+    return app()
+      .authenticate({ type: 'local', email, password })
+      .then((result) => this.updateUser(result.data));
   }
 
   @action
