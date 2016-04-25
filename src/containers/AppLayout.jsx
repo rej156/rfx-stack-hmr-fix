@@ -38,20 +38,22 @@ class AppLayout extends Component {
 
   render() {
     const { location, params, routeParams, route, routes } = this.props;
-    const ui = this.context.store.ui;
+    const { ui, auth } = this.context.store;
 
     return (
       <MatchMediaProvider breakpoints={ui.breakpoints}>
         <StickyContainer className={cx('animated', 'fadeIn')}>
-          { isDev ? <DevTools /> : null }
+          { isDev ? <DevTools position={{ bottom: 0, right: '20px' }} /> : null }
           <AppNav
             open={ui.appNavIsOpen}
             docked={ui.appNavIsDocked}
             onRequestChange={this.handleAppNavRequestChange}
           >
-            <h3 className={cx('m2')}>React Router Info</h3>
             <pre>
               <ul className={cx('list-reset', 'm2')}>
+                <li><h3>Auth Store Info</h3></li>
+                <li><b>User</b> {JSON.stringify(auth.user, undefined, 2)}</li>
+                <li><h3>React Router Info</h3></li>
                 <li><b>Location</b> {JSON.stringify(location, undefined, 2)}</li>
                 <li><b>Params</b> {JSON.stringify(params, undefined, 2)}</li>
                 <li><b>Route Params</b> {JSON.stringify(routeParams, undefined, 2)}</li>

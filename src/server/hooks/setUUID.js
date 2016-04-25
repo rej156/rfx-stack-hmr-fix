@@ -1,7 +1,9 @@
-export function timestamp(name) {
+import uuid from 'node-uuid';
+
+export function setUUID() {
   return (hook, next) => {
-    const data = hook.uuid;
-    data[name] = new Date();
+    const data = hook.data;
+    data.uuid = uuid.v4();
     next();
   };
 }

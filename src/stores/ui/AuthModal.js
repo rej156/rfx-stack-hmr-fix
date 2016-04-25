@@ -28,15 +28,15 @@ export default class AuthModal {
   }
 
   @action
-  toggle(flag = null) {
+  toggle(flag = null, section = null) {
     if (!flag) this.isOpen = !this.isOpen;
     if (flag === 'open') this.isOpen = true;
     if (flag === 'close') this.isOpen = false;
+    if (section) this.toggleSection(section);
   }
 
   @action
   toggleSection(to = 'signin') {
-    if (!to) this.showSection = 'signin';
     if (to === 'signin') this.showSection = 'signin';
     if (to === 'signup') this.showSection = 'signup';
   }
@@ -53,7 +53,6 @@ export default class AuthModal {
 
   @action
   setSigninErrors(data) {
-    console.log('setSigninErrors', data);
     this.signinErrors = data;
   }
 

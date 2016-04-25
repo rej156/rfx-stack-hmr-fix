@@ -1,19 +1,30 @@
 import { observable } from 'mobx';
 import { action } from '../state/actions';
 import { app, service } from '../app';
-import uuid from 'node-uuid';
 import _ from 'lodash';
 
 export default class AuthStore {
+
+  jwt = null;
 
   @observable user = null;
 
   constructor(auth) {
     Object.assign(this, auth);
+
+    this.jwtAuth();
   }
 
   updateUser(user) {
     this.user = user;
+  }
+
+  jwtAuth() {
+    return app().authenticate({
+      type: 'token',
+      token: global.CLIENT ? window.localStorage.token : null,
+    })
+    .then((result) => this.updateUser(result.data));
   }
 
   @action
@@ -33,9 +44,7 @@ export default class AuthStore {
 
   @action
   register({ email, password, username }) {
-    return service('user').create({ email, password, username,
-      uuid: uuid.v4(),
-    });
+    return service('user').create({ email, password, username });
   }
 
   @action
