@@ -29,6 +29,7 @@ export default class AuthModal {
 
   @action
   toggle(flag = null, section = null) {
+    console.log('section', section);
     if (!flag) this.isOpen = !this.isOpen;
     if (flag === 'open') this.isOpen = true;
     if (flag === 'close') this.isOpen = false;
