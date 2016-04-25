@@ -104,7 +104,7 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
           value={signinModel.password}
         />
         <div><button type="submit" className="btn btn-primary">Login</button></div>
-        <div className={cx({ hide: !signinErrors })}>{signinErrors}</div>
+        <div className={cx('red', 'm1', { hide: !signinErrors })}>{signinErrors}</div>
       </form>
     </div>
 
@@ -133,7 +133,7 @@ const AuthModal = ({ open, showSection, signinModel, signupModel, signinErrors, 
           value={signupModel.password}
         />
         <div><button type="submit" className="btn btn-primary">Register</button></div>
-        <div className={cx({ hide: !signupErrors })}>{signupErrors}</div>
+        <div className={cx('red', 'm1', { hide: !signupErrors })}>{signupErrors}</div>
       </form>
     </div>
   </Modal>
