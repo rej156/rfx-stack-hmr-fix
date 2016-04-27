@@ -2,8 +2,8 @@
   "parser": "babel-eslint",
   "extends": ["airbnb"],
   "plugins": [
-    "jsx-a11y",
-    "jsx-control-statements"
+    "react",
+    "jsx-a11y"
   ],
   "globals": {
     "If": true,

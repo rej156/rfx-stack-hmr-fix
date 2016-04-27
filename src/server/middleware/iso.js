@@ -6,13 +6,15 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
+import { setMatchMediaConfig } from 'local-reflex-matchmedia';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { fetchData } from '~/src/utils/fetch';
-import { setMatchMediaConfig } from '~/src/utils/matchMedia';
 import { ContextProvider } from '~/src/state/context';
 import { dehydrate } from '~/src/state/hydrate';
 import { log } from '../logger';
 import initStore from '~/src/state/store';
+
+console.log('setMatchMediaConfig', setMatchMediaConfig);
 
 function handleRouter(req, res, props) {
   log.info('handleRouter');

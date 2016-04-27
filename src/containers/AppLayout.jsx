@@ -8,10 +8,12 @@ import DevTools from 'mobx-react-devtools';
 
 // components
 import { StickyContainer, Sticky } from 'react-sticky';
-import { MatchMediaProvider } from '../utils/MatchMediaProvider';
+import { MatchMediaProvider } from 'local-reflex-matchmedia';
 import AppBar from '../components/AppBar';
 import AppNav from '../components/AppNav';
 import AuthModal from '../components/AuthModal';
+
+console.log('MatchMediaProvider', MatchMediaProvider);
 
 // global styles
 import '../styles/_.global.css';
