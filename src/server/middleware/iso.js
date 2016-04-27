@@ -11,13 +11,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { fetchData } from '~/src/utils/fetch';
 import { ContextProvider } from '~/src/state/context';
 import { dehydrate } from '~/src/state/hydrate';
-import { log } from '../logger';
 import initStore from '~/src/state/store';
 
-console.log('setMatchMediaConfig', setMatchMediaConfig);
-
 function handleRouter(req, res, props) {
-  log.info('handleRouter');
   const index = path.join(Dir.src, 'index');
 
   const store = initStore({

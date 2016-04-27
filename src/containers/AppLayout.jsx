@@ -13,8 +13,6 @@ import AppBar from '../components/AppBar';
 import AppNav from '../components/AppNav';
 import AuthModal from '../components/AuthModal';
 
-console.log('MatchMediaProvider', MatchMediaProvider);
-
 // global styles
 import '../styles/_.global.css';
 
