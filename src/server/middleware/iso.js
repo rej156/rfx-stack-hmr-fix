@@ -14,6 +14,7 @@ import { dehydrate } from '~/src/state/hydrate';
 import initStore from '~/src/state/store';
 
 function handleRouter(req, res, props) {
+  const { components, params, location } = props;
   const index = path.join(Dir.src, 'index');
 
   const store = initStore({
@@ -21,7 +22,7 @@ function handleRouter(req, res, props) {
     ui: { mui: { userAgent: req.headers['user-agent'] } },
   });
 
-  fetchData(store, props.components, props.params, props.location.query)
+  fetchData(store, components, params, location.query)
     .then(() => setMatchMediaConfig(req))
     .then(() => renderToString(
       <MuiThemeProvider muiTheme={store.ui.getMui()}>
