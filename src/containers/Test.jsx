@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'local-reflex-react';
 
 export default
 class Test extends Component {

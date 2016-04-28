@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from '../state/context';
-import cx from 'classnames';
-
-// dev tools
+import { cx, connect, DevTools } from 'local-reflex-react';
 import isDev from 'isdev';
-import DevTools from 'mobx-react-devtools';
 
 // components
 import { StickyContainer, Sticky } from 'react-sticky';

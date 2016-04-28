@@ -1,5 +1,5 @@
 import { observable } from 'mobx';
-import { action } from '~/src/state/actions';
+import { action } from 'local-reflex-react';
 
 export default class AppBar {
 

@@ -8,10 +8,13 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import { setMatchMediaConfig } from 'local-reflex-matchmedia';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { fetchData } from '~/src/utils/fetch';
-import { ContextProvider } from '~/src/state/context';
-import { dehydrate } from '~/src/state/hydrate';
-import initStore from '~/src/state/store';
+import ContextProvider from '~/src/context/ContextProvider';
+import initStore from '~/src/state';
+
+import {
+  dehydrate,
+  fetchData,
+} from 'local-reflex-react';
 
 function handleRouter(req, res, props) {
   const { components, params, location } = props;
@@ -31,6 +34,7 @@ function handleRouter(req, res, props) {
         </ContextProvider>
       </MuiThemeProvider>
     ))
+    .then(() => console.log('d', dehydrate(store)))
     .then((html) => res
       .status(200)
       .render(index, {

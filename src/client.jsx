@@ -1,14 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { rehydrate } from './state/hydrate';
 import { Router, browserHistory, match } from 'react-router';
-import { ContextProvider } from './state/context';
-import { fetchDataOnLocationMatch } from './utils/fetch';
+import Store from './state';
 import routes from './routes';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import ContextProvider from '~/src/context/ContextProviders';
 
-const store = rehydrate();
+import {
+  fetchDataOnLocationMatch,
+  rehydrate,
+} from 'local-reflex-react';
 
+const store = rehydrate(Store);
 store.ui.injectTapEv(); // material-ui fix
 fetchDataOnLocationMatch(browserHistory, routes, match, store);
 

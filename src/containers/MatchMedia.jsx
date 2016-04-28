@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Helmet from 'react-helmet';
-import { connect } from '../state/context';
-import cx from 'classnames';
+import { cx, connect, Helmet } from 'local-reflex-react';
 
 @connect
 export default

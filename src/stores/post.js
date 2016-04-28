@@ -1,7 +1,7 @@
 import { observable } from 'mobx';
 import { service } from '../app';
 import { factory } from '../seeds/post'; // just for test
-import { action } from '../state/actions';
+import { action } from 'local-reflex-react';
 import _ from 'lodash';
 
 export default class PostStore {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from '../state/context';
+import { connect } from 'local-reflex-react';
 
 const PostInfo = ({ items }) => (
   <div className="gray">

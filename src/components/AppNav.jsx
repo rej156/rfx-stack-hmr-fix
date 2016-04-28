@@ -1,6 +1,5 @@
 import React from 'react';
-import { connect } from '../state/context';
-import cx from 'classnames';
+import { cx, connect } from 'local-reflex-react';
 
 // components
 import Drawer from 'material-ui/Drawer';

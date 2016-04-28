@@ -1,7 +1,5 @@
 import React from 'react';
-import { dispatch } from '../state/dispatcher';
-import { connect } from '../state/context';
-// import cx from 'classnames';
+import { connect, dispatch } from 'local-reflex-react';
 
 // styles
 // import styles from '../styles/post.search.css';
