@@ -7,8 +7,8 @@ import Helmet from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import { setMatchMediaConfig } from 'local-reflex-matchmedia';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import ContextProvider from '~/src/context/ContextProvider';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import ContextProvider from '~/src/context/ContextProvider';
 import initStore from '~/src/state';
 
 import {
@@ -27,12 +27,15 @@ function handleRouter(req, res, props) {
 
   fetchData(store, components, params, location.query)
     .then(() => setMatchMediaConfig(req))
-    .then(() => renderToString(
-      <MuiThemeProvider muiTheme={store.ui.getMui()}>
-        <ContextProvider context={{ store }}>
-          <RouterContext {...props} />
-        </ContextProvider>
-      </MuiThemeProvider>
+    // .then(() => renderToString(
+    //   <MuiThemeProvider muiTheme={store.ui.getMui()}>
+    //     <ContextProvider context={{ store }}>
+    //       <RouterContext {...props} />
+    //     </ContextProvider>
+    //   </MuiThemeProvider>
+    // ))
+   .then(() => renderToString(
+      <RouterContext {...props} />
     ))
     .then(() => console.log('d', dehydrate(store)))
     .then((html) => res
