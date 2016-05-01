@@ -1,6 +1,14 @@
-import React, { Component } from 'react';
-import { observer } from 'mobx-react';
-import contextTypes from './types';
+import React, { Component, PropTypes } from 'react';
+
+const contextTypes = {
+  state: PropTypes.object,
+  store: PropTypes.object,
+  cache: PropTypes.object,
+  router: PropTypes.object,
+  location: PropTypes.object,
+  history: PropTypes.object,
+  muiTheme: PropTypes.object,
+};
 
 export default class ContextProvider extends Component {
 
@@ -19,14 +27,4 @@ export default class ContextProvider extends Component {
   render() {
     return this.props && this.props.children;
   }
-}
-
-/**
- * Decorate components with context and observable
- * @param component
- * @returns {Function|Class}
- */
-export function connect(component) {
-  Object.assign(component, { contextTypes });
-  return observer(component);
 }

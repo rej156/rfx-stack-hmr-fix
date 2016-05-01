@@ -10,14 +10,14 @@ import { match, RouterContext } from 'react-router';
 // OLD
 // import { fetchData } from '~/src/utils/fetch';
 // import { setMatchMediaConfig } from '~/src/utils/matchMedia';
-import { ContextProvider } from '~/src/state/context';
+// import { ContextProvider } from '~/src/state/context';
 // import { dehydrate } from '~/src/state/hydrate';
 import { log } from '../logger';
 // import initStore from '~/src/state/store';
 
 // NEW
 import { setMatchMediaConfig } from 'local-reflex-matchmedia';
-// import ContextProvider from '~/src/context/ContextProvider';
+import ContextProvider from '~/src/containers/ContextProvider';
 import initStore from '~/src/store';
 
 import {

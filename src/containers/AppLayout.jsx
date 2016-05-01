@@ -7,7 +7,7 @@ import { connect } from 'local-reflex-react';
 // components
 // import { StickyContainer, Sticky } from 'react-sticky';
 // import { MatchMediaProvider } from 'local-reflex-matchmedia';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import AppBar from '../components/AppBar';
 // import AppNav from '../components/AppNav';
 // import AuthModal from '../components/AuthModal';
@@ -38,15 +38,14 @@ class AppLayout extends Component {
   render() {
     // const { location, params, routeParams, route, routes } = this.props;
     // const { ui, auth } = this.context.store;
+    const { ui } = this.context.store;
 
-    console.log(this.context.store);
+    // console.log(this.context.store);
 
-    return this.props.children;
-
-    // return (
-    //   <MuiThemeProvider muiTheme={ui.getMui()}>
-    //     <div>TEST !!!!</div>
-    //   </MuiThemeProvider>
-    // );
+    return (
+      <MuiThemeProvider muiTheme={ui.getMui()}>
+        {this.props.children}
+      </MuiThemeProvider>
+    );
   }
 }
