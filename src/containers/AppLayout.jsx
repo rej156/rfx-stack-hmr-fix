@@ -6,7 +6,7 @@ import { cx, connect } from 'local-reflex-react';
 // components
 import { MatchMediaProvider } from 'local-reflex-matchmedia';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AuthModal from '../components/AuthModal';
+// import AuthModal from '../components/AuthModal';
 import AppBar from '../components/AppBar';
 // import AppNav from '../components/AppNav';
 
@@ -36,6 +36,7 @@ class AppLayout extends Component {
   render() {
     // const { location, params, routeParams, route, routes } = this.props;
     const { ui, auth } = this.context.store;
+    // const { ui } = this.context.store;
 
     return (
       <MuiThemeProvider muiTheme={ui.getMui()}>
@@ -51,16 +52,41 @@ class AppLayout extends Component {
               {this.props.children}
             </div>
           </div>
-          <AuthModal
-            open={ui.authModal.isOpen}
-            showSection={ui.authModal.showSection}
-            signinModel={ui.authModal.signinModel}
-            signupModel={ui.authModal.signupModel}
-            signinErrors={ui.authModal.signinErrors}
-            signupErrors={ui.authModal.signupErrors}
-          />
         </MatchMediaProvider>
       </MuiThemeProvider>
     );
+
+    // return (
+    //   <MuiThemeProvider muiTheme={ui.getMui()}>
+    //     <MatchMediaProvider breakpoints={ui.breakpoints}>
+    //       <AppNav
+    //         open={ui.appNavIsOpen}
+    //         docked={ui.appNavIsDocked}
+    //         onRequestChange={this.handleAppNavRequestChange}
+    //       >
+    //         <div>NAV</div>
+    //       </AppNav>
+    //       <div className={cx({ [styles.su]: ui.layoutIsShifted })}>
+    //         <AppBar
+    //           open={ui.appBar.accountMenuIsOpen}
+    //           check={auth.check}
+    //           user={auth.user}
+    //           ui={ui}
+    //         />
+    //         <div className={styles.content}>
+    //           {this.props.children}
+    //         </div>
+    //       </div>
+    //       <AuthModal
+    //         open={ui.authModal.isOpen}
+    //         showSection={ui.authModal.showSection}
+    //         signinModel={ui.authModal.signinModel}
+    //         signupModel={ui.authModal.signupModel}
+    //         signinErrors={ui.authModal.signinErrors}
+    //         signupErrors={ui.authModal.signupErrors}
+    //       />
+    //     </MatchMediaProvider>
+    //   </MuiThemeProvider>
+    // );
   }
 }
