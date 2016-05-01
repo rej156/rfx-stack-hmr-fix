@@ -11,17 +11,17 @@ import { match, RouterContext } from 'react-router';
 // import { fetchData } from '~/src/utils/fetch';
 // import { setMatchMediaConfig } from '~/src/utils/matchMedia';
 import { ContextProvider } from '~/src/state/context';
-import { dehydrate } from '~/src/state/hydrate';
+// import { dehydrate } from '~/src/state/hydrate';
 import { log } from '../logger';
-import initStore from '~/src/state/store';
+// import initStore from '~/src/state/store';
 
 // NEW
 import { setMatchMediaConfig } from 'local-reflex-matchmedia';
 // import ContextProvider from '~/src/context/ContextProvider';
-// import initStore from '~/src/state';
+import initStore from '~/src/store';
 
 import {
-  // dehydrate,
+  dehydrate,
   fetchData,
 } from 'local-reflex-react';
 

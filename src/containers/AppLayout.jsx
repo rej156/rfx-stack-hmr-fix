@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import { connect } from 'local-reflex-react';
-import { connect } from '../context/ContextProvider';
+import { connect } from 'local-reflex-react';
+// import { connect } from '../context/ContextProvider';
 // import { cx, connect, DevTools } from 'local-reflex-react';
 // import isDev from 'isdev';
 
@@ -39,11 +39,9 @@ class AppLayout extends Component {
     // const { location, params, routeParams, route, routes } = this.props;
     // const { ui, auth } = this.context.store;
 
-    // console.log(this.context.store);
+    console.log(this.context.store);
 
-    return (
-      <div>TEST !!!!</div>
-    );
+    return this.props.children;
 
     // return (
     //   <MuiThemeProvider muiTheme={ui.getMui()}>
