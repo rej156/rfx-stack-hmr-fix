@@ -7,31 +7,9 @@ import Helmet from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import { log } from '../logger';
-
-// OLD
-// import { fetchData } from '~/src/utils/fetch';
-// import { setMatchMediaConfig } from '~/src/utils/matchMedia';
-// import { ContextProvider } from '~/src/state/context';
-// import { dehydrate } from '~/src/state/hydrate';
-// import initStore from '~/src/state/store';
-
-// NEW
 import { setMatchMediaConfig } from 'local-reflex-matchmedia';
-// import ContextProvider from '~/src/containers/ContextProvider';
+import { dehydrate, fetchData, contextManager } from 'local-reflex-react';
 import initStore, { contextTypes } from '~/src/context';
-// import contextTypes from '~/src/state/types';
-// import { contextManager } from '~/src/state/ContextManager';
-// import { initContextProvider } from '~/src/state/inject';
-// import { ContextProvider } from '~/src/state/ContextProvider';
-
-import {
-  dehydrate,
-  fetchData,
-  contextManager,
-} from 'local-reflex-react';
-
-// const ContextProvider = initContextProvider(contextPropTypes);
-const ContextProvider = contextManager.init(contextTypes);
 
 function handleRouter(req, res, props) {
   log.info('handleRouter', req.url);
@@ -42,6 +20,8 @@ function handleRouter(req, res, props) {
     app: { ssrLocation: req.url },
     ui: { mui: { userAgent: req.headers['user-agent'] } },
   });
+
+  const ContextProvider = contextManager.init(contextTypes);
 
   fetchData(store, components, params, location.query)
     .then(() => setMatchMediaConfig(req))
