@@ -1,14 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-// import { rehydrate } from './state/hydrate';
 import { Router, browserHistory, match } from 'react-router';
-// import { ContextProvider } from './state/context';
-// import ContextProvider from './containers/ContextProvider';
-// import { fetchDataOnLocationMatch } from './utils/fetch';
-import routes from './routes';
 import initStore, { contextTypes } from '~/src/context';
-// import { initContextProvider } from './state/inject';
-// import { contextManager } from '~/src/state/ContextManager';
+import routes from './routes';
 
 import {
   rehydrate,
