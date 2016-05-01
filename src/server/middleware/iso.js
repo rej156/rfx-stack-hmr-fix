@@ -17,17 +17,17 @@ import { log } from '../logger';
 
 // NEW
 import { setMatchMediaConfig } from 'local-reflex-matchmedia';
-import ContextProvider from '~/src/containers/ContextProvider';
+// import ContextProvider from '~/src/containers/ContextProvider';
 import initStore from '~/src/store';
-// import contextPropTypes from '~/src/state/types';
-// import { initContextProvider } from '~/src/state/inject';
+import contextPropTypes from '~/src/state/types';
+import { initContextProvider } from '~/src/state/inject';
 
 import {
   dehydrate,
   fetchData,
 } from 'local-reflex-react';
 
-// const ContextProvider = initContextProvider(contextPropTypes);
+const ContextProvider = initContextProvider(contextPropTypes);
 
 function handleRouter(req, res, props) {
   log.info('handleRouter', req.url);

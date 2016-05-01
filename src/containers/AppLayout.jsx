@@ -39,7 +39,7 @@ class AppLayout extends Component {
     // const { ui, auth } = this.context.store;
     const { ui } = this.context.store;
 
-    // console.log(this.context.store);
+    console.log(this.context.store);
 
     return (
       <MuiThemeProvider muiTheme={ui.getMui()}>
