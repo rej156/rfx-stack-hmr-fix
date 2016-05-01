@@ -13,7 +13,6 @@ import {
 const store = rehydrate(initStore);
 store.ui.injectTapEv(); // material-ui fix
 fetchDataOnLocationMatch(browserHistory, routes, match, store);
-// const ContextProvider = initContextProvider(contextTypes);
 const ContextProvider = contextManager.init(contextTypes);
 
 render(
