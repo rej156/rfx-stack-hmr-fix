@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'local-reflex-react';
-// import { connect } from '../context/ContextProvider';
+// import { connect } from 'local-reflex-react';
+import { connect } from '../state/connect';
 // import { cx, connect, DevTools } from 'local-reflex-react';
 // import isDev from 'isdev';
 
@@ -17,7 +17,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // module styles
 // import styles from '../styles/app.layout.css';
 
-@connect
+@connect('store')
 export default
 class AppLayout extends Component {
 
@@ -38,8 +38,6 @@ class AppLayout extends Component {
     // const { location, params, routeParams, route, routes } = this.props;
     // const { ui, auth } = this.context.store;
     const { ui } = this.context.store;
-
-    console.log(this.context.store);
 
     return (
       <MuiThemeProvider muiTheme={ui.getMui()}>

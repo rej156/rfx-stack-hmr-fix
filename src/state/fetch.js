@@ -4,7 +4,6 @@
   Used on the server-side. It returns a Promise.
  */
 export function fetchData(store, components, params, query) {
-  console.log('fetchData');
   return Promise.all(components
     .map((component) => component.fetchData
       ? component.fetchData(store, params, query)

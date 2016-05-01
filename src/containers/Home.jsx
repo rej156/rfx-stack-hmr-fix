@@ -10,7 +10,7 @@ import PostList from '../components/PostList';
 // styles
 const button = cx(['btn', 'rounded', 'btn-outline']);
 
-@connect
+@connect('store')
 export default
 class Home extends Component {
 

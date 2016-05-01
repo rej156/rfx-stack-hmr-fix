@@ -19,15 +19,18 @@ import { log } from '../logger';
 import { setMatchMediaConfig } from 'local-reflex-matchmedia';
 // import ContextProvider from '~/src/containers/ContextProvider';
 import initStore from '~/src/store';
-import contextPropTypes from '~/src/state/types';
-import { initContextProvider } from '~/src/state/inject';
+import contextTypes from '~/src/state/types';
+import { contextManager } from '~/src/state/ContextManager';
+// import { initContextProvider } from '~/src/state/inject';
+// import { ContextProvider } from '~/src/state/ContextProvider';
 
 import {
   dehydrate,
   fetchData,
 } from 'local-reflex-react';
 
-const ContextProvider = initContextProvider(contextPropTypes);
+// const ContextProvider = initContextProvider(contextPropTypes);
+const ContextProvider = contextManager.init(contextTypes);
 
 function handleRouter(req, res, props) {
   log.info('handleRouter', req.url);

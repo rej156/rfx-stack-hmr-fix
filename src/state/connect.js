@@ -1,16 +1,17 @@
 /* eslint no-param-reassign: 0 */
 /* Code From: https://github.com/nightwolfz/mobx-connect */
 import { observer } from 'mobx-react';
-import { PropTypes } from 'react';
+// import { PropTypes } from 'react';
+// import { contextManager } from './ContextManager';
 
 const defaultContextTypes = {
-  state: PropTypes.object,
-  store: PropTypes.object,
-  cache: PropTypes.object,
-  router: PropTypes.object,
-  location: PropTypes.object,
-  history: PropTypes.object,
-  muiTheme: PropTypes.object,
+  // state: PropTypes.object,
+  // store: PropTypes.object,
+  // cache: PropTypes.object,
+  // router: PropTypes.object,
+  // location: PropTypes.object,
+  // history: PropTypes.object,
+  // muiTheme: PropTypes.object,
 };
 
 /**
@@ -26,6 +27,8 @@ function createContextTypes(ctxTypes) {
 }
 
 function composeWithContext(args, makeObservable) {
+  // const defaultContextTypesX = contextManager.getContextTypes();
+  // console.log('defaultContextTypesX', defaultContextTypesX);
   if (args && args.length) {
     // @connect / The first argument is the component.
     if (typeof args[0] === 'function') {

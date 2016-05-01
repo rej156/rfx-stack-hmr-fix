@@ -8,13 +8,15 @@ import { Router, browserHistory, match } from 'react-router';
 import { rehydrate, fetchDataOnLocationMatch } from 'local-reflex-react';
 import routes from './routes';
 import initStore from './store';
-import contextPropTypes from './state/types';
-import { initContextProvider } from './state/inject';
+import contextTypes from './state/types';
+// import { initContextProvider } from './state/inject';
+import { contextManager } from '~/src/state/ContextManager';
 
 const store = rehydrate(initStore);
 store.ui.injectTapEv(); // material-ui fix
 fetchDataOnLocationMatch(browserHistory, routes, match, store);
-const ContextProvider = initContextProvider(contextPropTypes);
+// const ContextProvider = initContextProvider(contextTypes);
+const ContextProvider = contextManager.init(contextTypes);
 
 render(
   <ContextProvider context={{ store }}>
