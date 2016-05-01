@@ -14,7 +14,6 @@ export default class ContextProvider extends Component {
 
   static propTypes = {
     children: React.PropTypes.node,
-    location: React.PropTypes.object, // ???
     context: React.PropTypes.shape(contextTypes),
   };
 

@@ -5,8 +5,7 @@ import { connect } from 'local-reflex-react';
 // import isDev from 'isdev';
 
 // components
-// import { StickyContainer, Sticky } from 'react-sticky';
-// import { MatchMediaProvider } from 'local-reflex-matchmedia';
+import { MatchMediaProvider } from 'local-reflex-matchmedia';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import AppBar from '../components/AppBar';
 // import AppNav from '../components/AppNav';
@@ -44,7 +43,9 @@ class AppLayout extends Component {
 
     return (
       <MuiThemeProvider muiTheme={ui.getMui()}>
-        {this.props.children}
+        <MatchMediaProvider breakpoints={ui.breakpoints}>
+          {this.props.children}
+        </MatchMediaProvider>
       </MuiThemeProvider>
     );
   }
