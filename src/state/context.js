@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import contextTypes from './types';
+import contextTypes from './contextTypes';
 
-export default class ContextProvider extends Component {
+export class ContextProvider extends Component {
 
   static propTypes = {
     children: React.PropTypes.node,
-    location: React.PropTypes.object, // ???
+    location: React.PropTypes.object,
     context: React.PropTypes.shape(contextTypes),
   };
 
@@ -27,6 +27,7 @@ export default class ContextProvider extends Component {
  * @returns {Function|Class}
  */
 export function connect(component) {
+  if (!component) return contextTypes;
   Object.assign(component, { contextTypes });
   return observer(component);
 }

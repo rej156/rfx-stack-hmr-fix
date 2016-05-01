@@ -6,19 +6,30 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
+
+// OLD
+// import { fetchData } from '~/src/utils/fetch';
+// import { setMatchMediaConfig } from '~/src/utils/matchMedia';
+import { ContextProvider } from '~/src/state/context';
+import { dehydrate } from '~/src/state/hydrate';
+import { log } from '../logger';
+import initStore from '~/src/state/store';
+
+// NEW
 import { setMatchMediaConfig } from 'local-reflex-matchmedia';
-// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import ContextProvider from '~/src/context/ContextProvider';
-import initStore from '~/src/state';
+// import initStore from '~/src/state';
 
 import {
-  dehydrate,
+  // dehydrate,
   fetchData,
 } from 'local-reflex-react';
 
+
 function handleRouter(req, res, props) {
-  const { components, params, location } = props;
+  log.info('handleRouter', req.url);
   const index = path.join(Dir.src, 'index');
+  const { components, params, location } = props;
 
   const store = initStore({
     app: { ssrLocation: req.url },
@@ -27,17 +38,11 @@ function handleRouter(req, res, props) {
 
   fetchData(store, components, params, location.query)
     .then(() => setMatchMediaConfig(req))
-    // .then(() => renderToString(
-    //   <MuiThemeProvider muiTheme={store.ui.getMui()}>
-    //     <ContextProvider context={{ store }}>
-    //       <RouterContext {...props} />
-    //     </ContextProvider>
-    //   </MuiThemeProvider>
-    // ))
-   .then(() => renderToString(
-      <RouterContext {...props} />
+    .then(() => renderToString(
+      <ContextProvider context={{ store }}>
+        <RouterContext {...props} />
+      </ContextProvider>
     ))
-    .then(() => console.log('d', dehydrate(store)))
     .then((html) => res
       .status(200)
       .render(index, {
