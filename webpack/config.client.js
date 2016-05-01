@@ -14,8 +14,8 @@ export function load() {
       filename: 'bundle.js',
     },
     plugins: [
-      // new webpack.optimize.OccurenceOrderPlugin(), // Webpack 1.0
-      new webpack.optimize.OccurrenceOrderPlugin(),  // Webpack 2.0 fixed this mispelling
+      new webpack.optimize.OccurenceOrderPlugin(), // Webpack 1.0
+      // new webpack.optimize.OccurrenceOrderPlugin(),  // Webpack 2.0 fixed this mispelling
       new webpack.DefinePlugin({
         'global.CONFIG': JSON.stringify(ExposeConfigToClient),
         'global.CLIENT': JSON.stringify(true),
