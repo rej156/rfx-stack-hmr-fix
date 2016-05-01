@@ -6,27 +6,28 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
+import { log } from '../logger';
 
 // OLD
 // import { fetchData } from '~/src/utils/fetch';
 // import { setMatchMediaConfig } from '~/src/utils/matchMedia';
 // import { ContextProvider } from '~/src/state/context';
 // import { dehydrate } from '~/src/state/hydrate';
-import { log } from '../logger';
 // import initStore from '~/src/state/store';
 
 // NEW
 import { setMatchMediaConfig } from 'local-reflex-matchmedia';
 // import ContextProvider from '~/src/containers/ContextProvider';
-import initStore from '~/src/store';
-import contextTypes from '~/src/state/types';
-import { contextManager } from '~/src/state/ContextManager';
+import initStore, { contextTypes } from '~/src/context';
+// import contextTypes from '~/src/state/types';
+// import { contextManager } from '~/src/state/ContextManager';
 // import { initContextProvider } from '~/src/state/inject';
 // import { ContextProvider } from '~/src/state/ContextProvider';
 
 import {
   dehydrate,
   fetchData,
+  contextManager,
 } from 'local-reflex-react';
 
 // const ContextProvider = initContextProvider(contextPropTypes);

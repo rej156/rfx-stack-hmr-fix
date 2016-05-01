@@ -5,12 +5,16 @@ import { Router, browserHistory, match } from 'react-router';
 // import { ContextProvider } from './state/context';
 // import ContextProvider from './containers/ContextProvider';
 // import { fetchDataOnLocationMatch } from './utils/fetch';
-import { rehydrate, fetchDataOnLocationMatch } from 'local-reflex-react';
 import routes from './routes';
-import initStore from './store';
-import contextTypes from './state/types';
+import initStore, { contextTypes } from '~/src/context';
 // import { initContextProvider } from './state/inject';
-import { contextManager } from '~/src/state/ContextManager';
+// import { contextManager } from '~/src/state/ContextManager';
+
+import {
+  rehydrate,
+  contextManager,
+  fetchDataOnLocationMatch,
+} from 'local-reflex-react';
 
 const store = rehydrate(initStore);
 store.ui.injectTapEv(); // material-ui fix
