@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import { connect } from 'local-reflex-react';
-import { connect } from '../state/connect';
+import { connect } from 'local-reflex-react';
 // import { cx, connect, DevTools } from 'local-reflex-react';
 // import isDev from 'isdev';
 
