@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { cx, connect, Helmet } from 'local-reflex-react';
 
-@connect
+@connect('store')
 export default
 class MatchMedia extends Component {
 

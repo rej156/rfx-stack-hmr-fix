@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { connect } from 'local-reflex-react';
+import { cx, connect } from 'local-reflex-react';
 // import { cx, connect, DevTools } from 'local-reflex-react';
 // import isDev from 'isdev';
 
 // components
 import { MatchMediaProvider } from 'local-reflex-matchmedia';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-// import AppBar from '../components/AppBar';
+import AuthModal from '../components/AuthModal';
+import AppBar from '../components/AppBar';
 // import AppNav from '../components/AppNav';
-// import AuthModal from '../components/AuthModal';
 
 // global styles
-// import '../styles/_.global.css';
+import '../styles/_.global.css';
 
 // module styles
-// import styles from '../styles/app.layout.css';
+import styles from '../styles/app.layout.css';
 
 @connect('store')
 export default
@@ -35,13 +35,30 @@ class AppLayout extends Component {
 
   render() {
     // const { location, params, routeParams, route, routes } = this.props;
-    // const { ui, auth } = this.context.store;
-    const { ui } = this.context.store;
+    const { ui, auth } = this.context.store;
 
     return (
       <MuiThemeProvider muiTheme={ui.getMui()}>
         <MatchMediaProvider breakpoints={ui.breakpoints}>
-          {this.props.children}
+          <div className={cx({ [styles.su]: ui.layoutIsShifted })}>
+            <AppBar
+              open={ui.appBar.accountMenuIsOpen}
+              check={auth.check}
+              user={auth.user}
+              ui={ui}
+            />
+            <div className={styles.content}>
+              {this.props.children}
+            </div>
+          </div>
+          <AuthModal
+            open={ui.authModal.isOpen}
+            showSection={ui.authModal.showSection}
+            signinModel={ui.authModal.signinModel}
+            signupModel={ui.authModal.signupModel}
+            signinErrors={ui.authModal.signinErrors}
+            signupErrors={ui.authModal.signupErrors}
+          />
         </MatchMediaProvider>
       </MuiThemeProvider>
     );
