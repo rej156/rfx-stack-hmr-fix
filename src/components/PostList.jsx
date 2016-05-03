@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'local-reflex-react';
+import { connect } from 'local-rfx-react';
 
 // components
 import TimeAgo from 'react-timeago';

@@ -1,5 +1,5 @@
 import { observable } from 'mobx';
-import { action } from 'local-reflex-react';
+import { action } from 'local-rfx-react';
 import _ from 'lodash';
 
 export default class AuthModal {

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { cx, connect } from 'local-reflex-react';
-// import { cx, connect, DevTools } from 'local-reflex-react';
+import { cx, connect } from 'local-rfx-react';
+// import { cx, connect, DevTools } from 'local-rfx-react';
 // import isDev from 'isdev';
 
 // components
-import { MatchMediaProvider } from 'local-reflex-matchmedia';
+import { MatchMediaProvider } from 'local-rfx-matchmedia';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import AuthModal from '../components/AuthModal';
 import AppBar from '../components/AppBar';

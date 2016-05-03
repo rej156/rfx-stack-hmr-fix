@@ -8,7 +8,7 @@ import {
   rehydrate,
   contextManager,
   fetchDataOnLocationMatch,
-} from 'local-reflex-react';
+} from 'local-rfx-react';
 
 const store = rehydrate(initStore);
 store.ui.injectTapEv(); // material-ui fix

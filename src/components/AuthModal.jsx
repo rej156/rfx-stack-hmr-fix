@@ -1,5 +1,5 @@
 import React from 'react';
-import { cx, connect, dispatch } from 'local-reflex-react';
+import { cx, connect, dispatch } from 'local-rfx-react';
 
 // components
 import Modal from 'react-modal';

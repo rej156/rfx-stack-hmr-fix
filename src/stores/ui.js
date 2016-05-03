@@ -1,5 +1,5 @@
 import { observable, autorun } from 'mobx';
-import { action } from 'local-reflex-react';
+import { action } from 'local-rfx-react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';

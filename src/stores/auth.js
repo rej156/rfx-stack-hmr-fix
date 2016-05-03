@@ -1,5 +1,5 @@
 import { observable, computed } from 'mobx';
-import { action } from 'local-reflex-react';
+import { action } from 'local-rfx-react';
 import { app, service } from '../app';
 import _ from 'lodash';
 

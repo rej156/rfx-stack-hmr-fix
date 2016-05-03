@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, dispatch } from 'local-reflex-react';
+import { connect, dispatch } from 'local-rfx-react';
 
 // styles
 // import styles from '../styles/post.search.css';

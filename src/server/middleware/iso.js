@@ -7,8 +7,8 @@ import Helmet from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import { log } from '../logger';
-import { setMatchMediaConfig } from 'local-reflex-matchmedia';
-import { dehydrate, fetchData, contextManager } from 'local-reflex-react';
+import { setMatchMediaConfig } from 'local-rfx-matchmedia';
+import { dehydrate, fetchData, contextManager } from 'local-rfx-react';
 import initStore, { contextTypes } from '~/src/context';
 
 function handleRouter(req, res, props) {

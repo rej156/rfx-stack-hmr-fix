@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { cx, connect, Helmet } from 'local-reflex-react';
+import { cx, connect, Helmet } from 'local-rfx-react';
 
 @connect('store')
 export default
