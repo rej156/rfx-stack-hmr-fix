@@ -29,6 +29,16 @@ class AppLayout extends Component {
     routes: React.PropTypes.array,
   };
 
+  componentWillMount() {
+    // get token from localStorage
+    const token = global.CLIENT
+      ? window.localStorage.token
+      : null;
+
+    // auto-login with jwt
+    if (token) this.context.store.auth.jwtAuth({ token });
+  }
+
   handleAppNavRequestChange = (open) => {
     this.context.store.ui.appNavIsOpen = open;
   };
