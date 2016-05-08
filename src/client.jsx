@@ -1,23 +1,27 @@
 import React from 'react';
+import { AppContainer } from 'react-hot-loader';
 import { render } from 'react-dom';
-import { Router, browserHistory, match } from 'react-router';
-import initStore, { contextTypes } from '~/src/context';
-import routes from './routes';
+import App from './containers/App';
 
-import {
-  rehydrate,
-  contextManager,
-  fetchDataOnLocationMatch,
-} from 'local-rfx-react';
-
-const store = rehydrate(initStore);
-store.ui.injectTapEv(); // material-ui fix
-fetchDataOnLocationMatch(browserHistory, routes, match, store);
-const ContextProvider = contextManager.init(contextTypes);
+const rootElement = document.getElementById('root');
 
 render(
-  <ContextProvider context={{ store }}>
-    <Router routes={routes} history={browserHistory} />
-  </ContextProvider>,
-  document.getElementById('root')
+  <AppContainer>
+    <App />
+  </AppContainer>,
+  rootElement
 );
+
+if (module.hot) {
+  module.hot.accept('./containers/App', () => {
+    // If you use Webpack 2 in ES modules mode, you can
+    // use <App /> here rather than require() a <NextApp />.
+    const NextApp = require('./containers/App').default;
+    render(
+      <AppContainer>
+        <NextApp />
+      </AppContainer>,
+      rootElement
+    );
+  });
+}
