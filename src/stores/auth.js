@@ -11,14 +11,6 @@ export default class AuthStore {
 
   constructor(auth) {
     Object.assign(this, auth);
-
-    // // get token from localStorage
-    // const token = global.CLIENT
-    //   ? window.localStorage.token
-    //   : null;
-
-    // // auto-login with jwt
-    // if (token) this.jwtAuth({ token });
   }
 
   updateUser(user) {

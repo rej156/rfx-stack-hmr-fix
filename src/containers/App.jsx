@@ -9,8 +9,16 @@ import {
   fetchDataOnLocationMatch,
 } from 'local-rfx-react';
 
+// get token from localStorage
+const token = global.CLIENT
+  ? window.localStorage.token
+  : null;
+
+if (token) console.log('token', token);
+
 const store = rehydrate(initStore);
 store.ui.injectTapEv(); // material-ui fix
+if (token) store.auth.jwtAuth({ token });
 fetchDataOnLocationMatch(browserHistory, routes, match, store);
 const ContextProvider = contextManager.init(contextTypes);
 
