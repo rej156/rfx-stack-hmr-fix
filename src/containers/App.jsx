@@ -10,15 +10,14 @@ import {
 } from 'local-rfx-react';
 
 const store = rehydrate(initStore);
+store.ui.injectTapEv(); // material-ui fix
 fetchDataOnLocationMatch(browserHistory, routes, match, store);
 const ContextProvider = contextManager.init(contextTypes);
 
 export default
 class App extends Component {
 
-  static fetchData($store) {
-    $store.ui.injectTapEv(); // material-ui fix
-  }
+  static fetchData() {} // not working
 
   render() {
     return (
