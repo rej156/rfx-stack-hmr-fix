@@ -13,7 +13,7 @@ export default (state) => ({
   app: new AppStore(state.app),
   auth: new AuthStore(state.auth),
   post: new PostStore(state.post),
-  // or add more ...
+  // add more stores here ...
   // user: new UserStore(state.user),
 });
 
