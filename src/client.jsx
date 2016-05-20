@@ -38,21 +38,6 @@ renderApp(App, store);
 
 if (module.hot) {
   if (!window.store) window.store = store;
-  module.hot.accept('./containers/App', () => {
-    renderApp(require('./containers/App').default);
-  });
+  const AppComponent = require('./containers/App').default;
+  module.hot.accept(() => renderApp(AppComponent, store));
 }
-
-// if (module.hot) {
-//   module.hot.accept('./containers/App', () => {
-//     // If you use Webpack 2 in ES modules mode, you can
-//     // use <App /> here rather than require() a <NextApp />.
-//     const NextApp = require('./containers/App').default;
-//     render(
-//       <AppContainer>
-//         <NextApp />
-//       </AppContainer>,
-//       rootElement
-//     );
-//   });
-// }
