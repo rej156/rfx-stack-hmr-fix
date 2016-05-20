@@ -12,7 +12,7 @@ export default
 class App extends Component {
 
   static propTypes = {
-    context: React.PropTypes.object,
+    store: React.PropTypes.object,
     routes: React.PropTypes.object,
     history: React.PropTypes.object,
   };
@@ -21,7 +21,7 @@ class App extends Component {
 
   render() {
     return (
-      <ContextProvider context={this.props.context}>
+      <ContextProvider context={{ store: this.props.store }}>
         <Router routes={this.props.routes} history={this.props.history} />
       </ContextProvider>
     );

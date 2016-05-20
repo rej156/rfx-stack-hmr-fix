@@ -2,41 +2,44 @@ import React from 'react';
 import { AppContainer } from 'react-hot-loader';
 import { render } from 'react-dom';
 import { browserHistory, match } from 'react-router';
-import initStore from '~/src/context';
-import routes from '~/src/routes';
+import initStore from './context';
+import routes from './routes';
+import App from './containers/App';
 
 import {
   rehydrate,
-  hydrateHMR,
   fetchDataOnLocationMatch,
 } from 'local-rfx-react';
 
-const rootElement = document.getElementById('root');
 const store = rehydrate(initStore);
 store.ui.injectTapEv(); // material-ui fix
 fetchDataOnLocationMatch(browserHistory, routes, match, store);
 
-function renderApp(_store = null) {
-  const App = require('./containers/App').default;
+function renderApp(AppComponent, hmrStore = null) {
+  if (window.store) {
+    hmrStore = require('./context') // eslint-disable-line no-param-reassign
+      .default(JSON.parse(JSON.stringify(window.store)));
+    window.store = hmrStore;
+  }
 
   render(
     <AppContainer>
-      <App
-        context={{ store: hydrateHMR() || _store }}
-        history={browserHistory}
+      <AppComponent
+        store={hmrStore}
         routes={routes}
+        history={browserHistory}
       />
     </AppContainer>,
-    rootElement
+    document.getElementById('root')
   );
 }
 
-renderApp(store);
+renderApp(App, store);
 
 if (module.hot) {
-  if (!window.__STORE) window.__STORE = store;
+  if (!window.store) window.store = store;
   module.hot.accept('./containers/App', () => {
-    renderApp();
+    renderApp(require('./containers/App').default);
   });
 }
 
