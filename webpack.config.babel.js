@@ -45,6 +45,4 @@ Config = merge(Config, {
   },
 });
 
-console.log(Config);
-
 export default Config;
