@@ -11,7 +11,7 @@ const middleware = [
   whm(compiler),
   wdm(compiler, {
     publicPath: config.output.publicPath,
-    historyApiFallback: true,
+    historyApiFallback: false,
     hot: true,
     noInfo: false,
     quiet: true,
