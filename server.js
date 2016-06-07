@@ -8,9 +8,9 @@ require('css-modules-require-hook')({
 
 global.CONFIG = require('./config').Config;
 
-require('./src/server/server.api');
+require('./src/api/server');
 
 require((process.env.NODE_ENV === 'production')
-  ? './src/server/server.iso'
-  : './src/server/server.hot'
+  ? './src/web/server.iso'
+  : './src/web/server.hot'
 );

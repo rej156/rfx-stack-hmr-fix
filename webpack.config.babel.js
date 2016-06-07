@@ -11,15 +11,15 @@ const PreLoader = getPreLoaders();
 if (TARGET === 'server:dev') {
   Config = require('./webpack/config.client').load();
   const ConfigClientDev = require('./webpack/config.client.dev');
-  Loader = merge(ConfigClientDev.loader(), Loader);
-  Config = merge(ConfigClientDev.config(), Config);
+  Loader = merge(Loader, ConfigClientDev.loader());
+  Config = merge(Config, ConfigClientDev.config());
 }
 
 if (TARGET === 'build:client') {
   Config = require('./webpack/config.client').load();
   const ConfigClientBuild = require('./webpack/config.client.build');
-  Loader = merge(ConfigClientBuild.loader(), Loader);
-  Config = merge(ConfigClientBuild.config(), Config);
+  Loader = merge(Loader, ConfigClientBuild.loader());
+  Config = merge(Config, ConfigClientBuild.config());
 }
 
 if (TARGET === 'build:server') {
@@ -30,7 +30,7 @@ if (TARGET === 'build:server') {
 }
 
 // Globals
-Config = merge(Globals, Config);
+Config = merge(Config, Globals);
 
 // Loaders
 Config = merge(Config, {

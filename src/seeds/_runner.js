@@ -1,4 +1,4 @@
-import { log } from '../server/logger';
+import { log } from '../utils/logger';
 import { Config } from '~/config';
 
 const handlerFile = ['./_handler.', Config.env].join('');

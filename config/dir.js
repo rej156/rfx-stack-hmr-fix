@@ -8,13 +8,15 @@ const Dir = {
   public: path.resolve(__dirname, '..', 'public'),
   build: path.resolve(__dirname, '..', 'public', 'build'),
   static: path.resolve(__dirname, '..', 'public', 'static'),
-  components: path.resolve(__dirname, '..', 'src', 'components'),
-  containers: path.resolve(__dirname, '..', 'src', 'containers'),
-  stores: path.resolve(__dirname, '..', 'src', 'stores'),
-  server: path.resolve(__dirname, '..', 'src', 'server'),
-  services: path.resolve(__dirname, '..', 'src', 'server', 'services'),
-  hooks: path.resolve(__dirname, '..', 'src', 'server', 'hooks'),
-  middleware: path.resolve(__dirname, '..', 'src', 'server', 'middleware'),
+  shared: path.resolve(__dirname, '..', 'src', 'shared'),
+  api: path.resolve(__dirname, '..', 'src', 'api'),
+  web: path.resolve(__dirname, '..', 'src', 'web'),
+  views: path.resolve(__dirname, '..', 'src', 'web', 'views'),
+  utils: path.resolve(__dirname, '..', 'src', 'utils'),
+  hooks: path.resolve(__dirname, '..', 'src', 'api', 'hooks'),
+  middleware: path.resolve(__dirname, '..', 'src', 'api', 'middleware'),
+  services: path.resolve(__dirname, '..', 'src', 'api', 'services'),
+  seeds: path.resolve(__dirname, '..', 'src', 'seeds'),
 };
 
 export { Dir };

@@ -5,11 +5,11 @@ import { Config } from '~/config';
 
 export function loader() {
   return {
-    // jsx: {
-    //   query: {
-    //     presets: ['react-hmre'],
-    //   },
-    // },
+    jsx: {
+      query: {
+        presets: ['react-hmre'],
+      },
+    },
     cssModules: {
       loaders: [
         'style-loader',
@@ -26,10 +26,7 @@ export function loader() {
 export function config() {
   return {
     devtool: 'cheap-module-eval-source-map',
-    entry: [
-      'react-hot-loader/patch',
-      'webpack-hot-middleware/client',
-    ],
+    entry: ['webpack-hot-middleware/client'],
     plugins: [
       new BrowserSyncPlugin({
         host: Config.browsersync.host,
