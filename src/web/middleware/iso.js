@@ -1,6 +1,4 @@
-import path from 'path';
 import isDev from 'isdev';
-import { Dir } from '~/config';
 import React from 'react';
 import Helmet from 'react-helmet';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
