@@ -9,6 +9,7 @@ let Loader = getLoaders();
 const PreLoader = getPreLoaders();
 
 if (TARGET === 'server:dev') {
+  console.log('server:dev');
   Config = require('./webpack/config.client').load();
   const ConfigClientDev = require('./webpack/config.client.dev');
   Loader = merge(Loader, ConfigClientDev.loader());
@@ -45,6 +46,6 @@ Config = merge(Config, {
   },
 });
 
-console.log(Config.entry);
+console.log('Config.entry', Config.entry);
 
 export default Config;

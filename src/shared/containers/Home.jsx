@@ -48,7 +48,6 @@ class Home extends Component {
 
         <img width="20" src="/static/img/check.png" role="presentation" />
         <a href="/static/img/check.png">Check Static</a>
-        <hr />
 
         <div className="center">
           <button

@@ -29,11 +29,12 @@ function renderApp(App) {
   );
 }
 
-renderApp(require('./App').default, store);
+renderApp(require('./App').default);
 
 if (module.hot) {
   if (!window.store) window.store = store;
   module.hot.accept('./App', () => {
-    renderApp(require('./App').default);
+    const NextApp = require('./App').default;
+    renderApp(NextApp);
   });
 }

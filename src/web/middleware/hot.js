@@ -1,24 +1,26 @@
-// import historyFallback from 'connect-history-api-fallback';
+// import historyApiFallback from 'connect-history-api-fallback';
 import config from '~/webpack.config.babel';
 import webpack from 'webpack';
-import whm from 'webpack-hot-middleware';
-import wdm from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
 
-const compiler = webpack(config);
+const bundler = webpack(config);
 
 const middleware = [
-  // historyFallback(), // use only if iso-middleware is disabled
-  whm(compiler),
-  wdm(compiler, {
+  webpackDevMiddleware(bundler, {
+    filename: config.output.filename,
     publicPath: config.output.publicPath,
-    historyApiFallback: true,
+    historyApiFallback: false,
     hot: true,
-    noInfo: false,
-    quiet: false,
     stats: {
       colors: true,
     },
   }),
+  // webpackHotMiddleware(bundler),
+  webpackHotMiddleware(bundler, {
+    log: console.log, // eslint-disable-line no-console
+  }),
+  // historyApiFallback(),
 ];
 
 export { middleware as hotMiddleware };

@@ -10,10 +10,10 @@ const Env = getenv.multi({
     host: 'BROWSERSYNC_HOST',
     port: 'BROWSERSYNC_PORT',
   },
-  dev: {
-    host: 'DEV_HOST',
-    port: 'DEV_PORT',
-  },
+  // dev: {
+  //   host: 'DEV_HOST',
+  //   port: 'DEV_PORT',
+  // },
   web: {
     host: 'WEB_HOST',
     port: 'WEB_PORT',

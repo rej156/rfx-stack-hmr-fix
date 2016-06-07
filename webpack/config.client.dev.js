@@ -4,21 +4,22 @@ import NpmInstallWebpackPlugin from 'npm-install-webpack-plugin';
 import webpack from 'webpack';
 import { Config, Dir } from '~/config';
 
-const devhost = ['http://', Config.dev.host, ':', Config.dev.port].join('');
 const webhost = ['http://', Config.web.host, ':', Config.web.port].join('');
+// const devhost = ['http://', Config.dev.host, ':', Config.dev.port].join('');
+// const bshost = ['http://', Config.browsersync.host, ':', Config.browsersync.port].join('');
 
 export function loader() {
   return {
     jsx: {
       query: {
-        presets: ['es2015-loose', 'stage-0', 'react'],
+        presets: ['es2015', 'stage-0', 'react'],
         plugins: [
+          'react-hot-loader/babel',
           'babel-root-import',
           'jsx-control-statements',
           'transform-decorators-legacy',
           'transform-class-properties',
           'transform-decorators',
-          'react-hot-loader/babel',
         ],
       },
     },
@@ -39,22 +40,23 @@ export function config() {
   return {
     devtool: 'cheap-module-eval-source-map',
     entry: [
-      ['webpack-dev-server/client', devhost].join('?'),
-      'webpack/hot/only-dev-server',
       'react-hot-loader/patch',
+      // ['webpack-hot-middleware/client', webhost].join('?'),
+      'webpack-hot-middleware/client',
       path.join(Dir.web, 'client'),
     ],
     output: {
-      path: '/',
+      path: path.join(Dir.public, 'build'),
+      // path: '/',
       publicPath: '/',
       filename: 'bundle.js',
     },
-    proxy: { '*': webhost },
+    // proxy: { '*': devhost },
     plugins: [
       new BrowserSyncPlugin({
         host: Config.browsersync.host,
         port: Config.browsersync.port,
-        proxy: devhost,
+        proxy: webhost,
       }, { reload: false }),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
