@@ -1,6 +1,5 @@
 import webpack from 'webpack';
-import path from 'path';
-import { Dir, ExposeConfigToClient } from '~/config';
+import { ExposeConfigToClient } from '~/config';
 
 export function load() {
   return {
@@ -8,10 +7,6 @@ export function load() {
     entry: [
       'babel-polyfill',
     ],
-    output: {
-      path: path.join(Dir.public, 'build'),
-      filename: 'bundle.js',
-    },
     plugins: [
       // new webpack.optimize.OccurenceOrderPlugin(), // Webpack 1.0
       new webpack.optimize.OccurrenceOrderPlugin(),  // Webpack 2.0 fixed this mispelling

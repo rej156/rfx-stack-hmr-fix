@@ -25,7 +25,11 @@ export function config() {
     bail: true,
     devtool: 'source-map',
     entry: [path.join(Dir.web, 'client')],
-    output: { publicPath: '/build/' },
+    output: {
+      path: path.join(Dir.public, 'build'),
+      publicPath: '/build/',
+      filename: 'bundle.js',
+    },
     plugins: [
       new ProgressBarPlugin(),
       new webpack.optimize.DedupePlugin(),

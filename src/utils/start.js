@@ -32,5 +32,5 @@ export function startApiServer() {
 }
 
 export function startWebServer() {
-  new Start(this).init();
+  new Start(this, 'WEB').init();
 }
