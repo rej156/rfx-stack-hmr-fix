@@ -28,8 +28,8 @@ export function config() {
   return {
     devtool: 'cheap-module-eval-source-map',
     entry: [
-      'webpack-hot-middleware/client',
       'react-hot-loader/patch',
+      'webpack-hot-middleware/client',
       path.join(Dir.web, 'client'),
     ],
     plugins: [

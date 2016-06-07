@@ -44,7 +44,6 @@ class Home extends Component {
             { name: 'description', content: 'Application description' },
             { property: 'og:type', content: 'article' },
           ]}
-          onChangeClientState={(newState) => console.log('helmet', newState)}
         />
 
         <img width="20" src="/static/img/check.png" role="presentation" />

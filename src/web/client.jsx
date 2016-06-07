@@ -7,11 +7,16 @@ import { rehydrate } from '~/src/shared/state/hydrate';
 import initStore from '../shared/stores';
 import routes from '../shared/routes';
 
-const store = rehydrate(initStore);
+let store = rehydrate(initStore);
 store.ui.injectTapEv(); // material-ui fix
 fetchDataOnLocationMatch(browserHistory, routes, match, store);
 
 function renderApp(App) {
+  if (window.store) {
+    store = require('../shared/state/store')
+      .default(JSON.parse(JSON.stringify(window.store)));
+    window.store = store;
+  }
   render(
     <AppContainer>
       <App
@@ -24,9 +29,10 @@ function renderApp(App) {
   );
 }
 
-renderApp(require('./App').default);
+renderApp(require('./App').default, store);
 
 if (module.hot) {
+  if (!window.store) window.store = store;
   module.hot.accept('./App', () => {
     renderApp(require('./App').default);
   });
