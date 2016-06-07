@@ -16,7 +16,6 @@ const middleware = [
       colors: true,
     },
   }),
-  // webpackHotMiddleware(bundler),
   webpackHotMiddleware(bundler, {
     log: console.log, // eslint-disable-line no-console
   }),
