@@ -46,8 +46,8 @@ export function config() {
       path.join(Dir.web, 'client'),
     ],
     output: {
-      path: path.join(Dir.public, 'build'),
-      // path: '/',
+      // path: path.join(Dir.public, 'build'),
+      path: '/',
       publicPath: '/',
       filename: 'bundle.js',
     },
