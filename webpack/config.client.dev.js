@@ -5,8 +5,6 @@ import webpack from 'webpack';
 import { Config, Dir } from '~/config';
 
 const webhost = ['http://', Config.web.host, ':', Config.web.port].join('');
-// const devhost = ['http://', Config.dev.host, ':', Config.dev.port].join('');
-// const bshost = ['http://', Config.browsersync.host, ':', Config.browsersync.port].join('');
 
 export function loader() {
   return {
@@ -46,12 +44,10 @@ export function config() {
       path.join(Dir.web, 'client'),
     ],
     output: {
-      // path: path.join(Dir.public, 'build'),
       path: '/',
       publicPath: '/',
       filename: 'bundle.js',
     },
-    // proxy: { '*': devhost },
     plugins: [
       new BrowserSyncPlugin({
         host: Config.browsersync.host,
