@@ -14,7 +14,7 @@ new WebpackDevServer(webpack(config), {
   proxy: { '*': webhost },
   filename: config.output.filename,
   publicPath: config.output.publicPath,
-  historyApiFallback: false,
+  historyApiFallback: true,
   hot: true,
   stats: {
     colors: true,
