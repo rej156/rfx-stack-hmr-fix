@@ -1,6 +1,8 @@
+import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import webpack from 'webpack';
+import { Dir } from '~/config';
 
 export function loader() {
   return {
@@ -22,6 +24,7 @@ export function config() {
   return {
     bail: true,
     devtool: 'source-map',
+    entry: [path.join(Dir.web, 'client')],
     output: { publicPath: '/build/' },
     plugins: [
       new ProgressBarPlugin(),

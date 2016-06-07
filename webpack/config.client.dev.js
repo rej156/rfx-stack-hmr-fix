@@ -1,15 +1,16 @@
+import path from 'path';
 import BrowserSyncPlugin from 'browser-sync-webpack-plugin';
 import NpmInstallWebpackPlugin from 'npm-install-webpack-plugin';
 import webpack from 'webpack';
-import { Config } from '~/config';
+import { Config, Dir } from '~/config';
 
 export function loader() {
   return {
-    jsx: {
-      query: {
-        presets: ['react-hmre'],
-      },
-    },
+    // jsx: {
+    //   query: {
+    //     presets: ['react-hmre'],
+    //   },
+    // },
     cssModules: {
       loaders: [
         'style-loader',
@@ -26,7 +27,11 @@ export function loader() {
 export function config() {
   return {
     devtool: 'cheap-module-eval-source-map',
-    entry: ['webpack-hot-middleware/client'],
+    entry: [
+      'webpack-hot-middleware/client',
+      'react-hot-loader/patch',
+      path.join(Dir.web, 'client'),
+    ],
     plugins: [
       new BrowserSyncPlugin({
         host: Config.browsersync.host,
