@@ -47,7 +47,7 @@ const AppBar = ({ open, check, user, ui }) => (
   })}
   >
     <div className="left">
-      <a onClick={handleNavToggle} className={button}>Toggle Nav</a>
+      <a onClick={handleNavToggle} className={button}>Toggle Nav...</a>
       <Link to="/" className={button}>Home</Link>
       <Link to="/matchmedia" className="btn" className={button}>MatchMedia</Link>
       <Link to="/test" className="btn" className={button}>Test</Link>

@@ -12,12 +12,12 @@ export function loader() {
       query: {
         presets: ['es2015', 'stage-0', 'react'],
         plugins: [
-          'react-hot-loader/babel',
           'babel-root-import',
           'jsx-control-statements',
           'transform-decorators-legacy',
           'transform-class-properties',
           'transform-decorators',
+          'react-hot-loader/babel',
         ],
       },
     },

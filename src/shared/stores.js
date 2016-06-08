@@ -23,7 +23,6 @@ export default (state) => ({
   post: new PostStore(state.post),
 });
 
-
 /**
   Context Types
  */
