@@ -47,5 +47,6 @@ Config = merge(Config, {
 });
 
 console.log('Config.entry', Config.entry);
+console.log('Config.plugins', Config.plugins);
 
 export default Config;

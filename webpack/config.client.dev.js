@@ -38,9 +38,9 @@ export function config() {
   return {
     devtool: 'cheap-module-eval-source-map',
     entry: [
-      'react-hot-loader/patch',
       // ['webpack-hot-middleware/client', webhost].join('?'),
       'webpack-hot-middleware/client',
+      'react-hot-loader/patch',
       path.join(Dir.web, 'client'),
     ],
     output: {
