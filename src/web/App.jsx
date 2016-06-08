@@ -12,7 +12,7 @@ class App extends Component {
     history: React.PropTypes.object,
   };
 
-  static fetchData() {} // not working
+  static fetchData() {}
 
   render() {
     return (
