@@ -45,6 +45,11 @@ class Home extends Component {
             { property: 'og:type', content: 'article' },
           ]}
         />
+        <h1
+          onClick={() => this.context.store.ui.testHMRAlert()}
+        >
+          This h1 element is reloadable! Click me!
+        </h1>
 
         <img width="20" src="/static/img/check.png" role="presentation" />
         <a href="/static/img/check.png">Check Static</a>

@@ -9,7 +9,11 @@ import routes from '../shared/routes';
 import App from './App';
 
 const store = rehydrate(initStore);
-store.ui.injectTapEv(); // material-ui fix
+// store.ui.injectTapEv(); // material-ui fix
+
+// For some reason having the react-tap-event-plugin fire in
+// this file breaks HMR too..
+
 fetchDataOnLocationMatch(browserHistory, routes, match, store);
 
 function renderApp(AppComponent) {
@@ -33,7 +37,11 @@ renderApp(App);
 
 if (module.hot) {
   if (!window.store) window.store = store;
-  module.hot.accept('./App', () => {
+  // The crucial HMR change is here btw!
+  // Literally the module accept needed to be removed,
+  // in MobX, the webpack HMR is different due to the way
+  // we've setup the reloadable stores :)
+  module.hot.accept(() => {
     const NextApp = require('./App').default;
     renderApp(NextApp);
   });

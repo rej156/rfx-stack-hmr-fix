@@ -64,6 +64,9 @@ export default class UIStore {
     return getMuiTheme(this.mui, mui);
   }
 
+  @action
+  testHMRAlert = () => alert("You're welcome!")
+
   injectTapEv() {
     // Material-UI components use react-tap-event-plugin to listen for touch events
     // This dependency is temporary and will go away once react v1.0
